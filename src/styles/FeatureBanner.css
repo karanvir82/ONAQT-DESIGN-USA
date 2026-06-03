@@ -1,0 +1,40 @@
+.fb-wrapper {
+  position: relative;
+  padding: 130px 0;
+  overflow: hidden;
+  background-color: #07080a;
+}
+.fb-bg {
+  position: absolute; inset: 0;
+  background-image: url('/images/hero_jewelry_banner.png');
+  background-size: cover; background-position: center;
+  filter: brightness(0.4) contrast(1.05);
+  transform: scale(1.05);
+}
+.fb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(3,4,5,0.92) 0%, rgba(7,8,10,0.7) 45%, rgba(7,8,10,0.25) 100%);
+}
+.fb-content { position: relative; max-width: 620px; }
+.fb-content .section-mini-title { color: #d4af37 !important; }
+.fb-content h2 { font-size: 2.8rem; line-height: 1.18; margin: 12px 0 20px; color: #f5f6f8; }
+.fb-content p { color: #a0a5b0; line-height: 1.8; margin-bottom: 32px; font-size: 1rem; }
+.fb-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.fb-actions .button-premium-outline {
+  color: #d4af37 !important;
+  border: 1px solid #d4af37 !important;
+  background: transparent !important;
+}
+.fb-actions .button-premium-outline:hover {
+  background: rgba(212, 175, 55, 0.1) !important;
+  color: #f5f6f8 !important;
+  border-color: #f3e5ab !important;
+}
+
+@media (max-width: 768px) {
+  .fb-wrapper { padding: 90px 0; }
+  .fb-content h2 { font-size: 2rem; }
+  .fb-overlay { background: linear-gradient(180deg, rgba(3,4,5,0.85) 0%, rgba(7,8,10,0.8) 100%); }
+  .fb-actions { flex-direction: column; }
+  .fb-actions .button-premium, .fb-actions .button-premium-outline { width: 100%; }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07080a" />
+
+    <!-- SEO Meta Tags -->
+    <title>Satya Jewellers | Fine Gold, Diamond & Traditional Himachali Jewellery</title>
+    <meta name="description" content="Established in 1980 on The Mall, Shimla, Satya Jewellers offers 100% Karatmeter-tested gold ornaments, premium diamond jewellery, and traditional Himachali heritage collections." />
+    <meta name="keywords" content="Satya Jewellers, Shimla jewellers, gold necklace Shimla, Himachali jewellery, Chandrahaar Shimla, Diamond rings, The Mall Shimla, gold showroom Shimla" />
+    <link rel="canonical" href="https://satyajewellers.com/" />
+
+    <!-- Open Graph (WhatsApp / Facebook / Instagram link previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Satya Jewellers" />
+    <meta property="og:title" content="Satya Jewellers | Fine Gold, Diamond & Himachali Jewellery — Shimla" />
+    <meta property="og:description" content="Shimla's oldest jewellery showroom on The Mall, since 1980. 100% Karatmeter-tested gold, certified diamonds & traditional Himachali heritage pieces." />
+    <meta property="og:image" content="https://satyajewellers.com/images/hero_jewelry_banner.png" />
+    <meta property="og:url" content="https://satyajewellers.com/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Satya Jewellers | Fine Gold, Diamond & Himachali Jewellery — Shimla" />
+    <meta name="twitter:description" content="Shimla's oldest jewellery showroom on The Mall, since 1980. Karatmeter-tested gold, certified diamonds & Himachali heritage." />
+    <meta name="twitter:image" content="https://satyajewellers.com/images/hero_jewelry_banner.png" />
+
+    <!-- Structured data: Local Business (Google Business panel + maps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JewelryStore",
+      "name": "Satya Jewellers",
+      "image": "https://satyajewellers.com/images/hero_jewelry_banner.png",
+      "@id": "https://satyajewellers.com",
+      "url": "https://satyajewellers.com",
+      "telephone": "+91-98160-05000",
+      "priceRange": "$$$",
+      "foundingDate": "1980",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop No. 62, Satya Complex, The Mall",
+        "addressLocality": "Shimla",
+        "addressRegion": "Himachal Pradesh",
+        "postalCode": "171001",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 31.1048, "longitude": 77.1734 },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      }]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+    <style>
+      /* First-paint preloader (shows before React mounts) */
+      #preloader {
+        position: fixed; inset: 0; z-index: 9999;
+        background: #07080a;
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      #preloader .pl-mark {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 2rem; font-weight: 700; letter-spacing: 8px;
+        background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa771c 100%);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: plPulse 1.3s ease-in-out infinite;
+      }
+      @keyframes plPulse { 0%,100% { opacity: 0.45; } 50% { opacity: 1; } }
+      body.app-ready #preloader { opacity: 0; visibility: hidden; }
+    </style>
+  </head>
+  <body>
+    <div id="preloader" aria-hidden="true"><span class="pl-mark">SATYA</span></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

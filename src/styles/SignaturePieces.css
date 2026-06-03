@@ -1,0 +1,76 @@
+.sig-wrapper {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.sig-head { text-align: center; max-width: 600px; margin: 0 auto 55px; }
+.sig-head h2 { font-size: 2.4rem; margin-bottom: 14px; }
+.sig-head p { color: var(--text-secondary); line-height: 1.6; }
+
+.sig-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.sig-card {
+  display: block;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.luxury-tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+.luxury-tilt-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-premium);
+}
+.card-shine-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--shine-x, 50%) var(--shine-y, 50%),
+    rgba(212, 175, 55, var(--shine-opacity, 0)) 0%,
+    transparent 60%
+  );
+  z-index: 2;
+  transition: background 0.1s ease-out;
+}
+.sig-img {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+.sig-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sig-card:hover .sig-img img { transform: scale(1.09); }
+.sig-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(3,4,5,0.85); border: 1px solid var(--border-color);
+  color: var(--gold-light); font-size: 0.62rem; letter-spacing: 0.5px;
+  text-transform: uppercase; padding: 3px 9px; backdrop-filter: blur(5px);
+}
+.sig-info { padding: 20px; }
+.sig-cat {
+  font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold-primary); display: block; margin-bottom: 7px;
+}
+.sig-info h4 {
+  font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600;
+  line-height: 1.3; margin: 0 0 14px 0; min-height: 2.6em;
+}
+.sig-cta {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.74rem; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--gold-primary); font-weight: 500;
+}
+
+@media (max-width: 1024px) { .sig-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) { .sig-wrapper { padding: 70px 0; } }
+@media (max-width: 480px) { .sig-grid { grid-template-columns: 1fr; } }

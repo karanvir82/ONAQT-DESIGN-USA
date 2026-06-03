@@ -1,0 +1,69 @@
+.sbc-wrapper {
+  padding: 100px 0;
+  background-color: var(--bg-primary);
+}
+.sbc-head { text-align: center; max-width: 600px; margin: 0 auto 55px; }
+.sbc-head h2 { font-size: 2.4rem; margin-bottom: 14px; }
+.sbc-head p { color: var(--text-secondary); line-height: 1.6; }
+
+.sbc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.sbc-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-smooth);
+  height: 480px;
+}
+.sbc-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-premium);
+}
+.sbc-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sbc-card:hover .sbc-img { transform: scale(1.08); }
+.sbc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,8,10,0.1) 0%, rgba(7,8,10,0.5) 55%, rgba(3,4,5,0.92) 100%);
+  transition: var(--transition-smooth);
+}
+.sbc-card:hover .sbc-overlay {
+  background: linear-gradient(180deg, rgba(7,8,10,0.2) 0%, rgba(7,8,10,0.55) 50%, rgba(3,4,5,0.95) 100%);
+}
+.sbc-content {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 32px;
+  z-index: 2;
+}
+.sbc-sub {
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold-light); display: block; margin-bottom: 8px;
+}
+.sbc-content h3 {
+  font-size: 1.6rem; margin-bottom: 14px; color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+.sbc-card:hover .sbc-content h3 {
+  transform: translateY(-4px);
+  color: var(--gold-light);
+}
+.sbc-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold-primary); font-weight: 600;
+  transition: var(--transition-fast);
+}
+.sbc-card:hover .sbc-cta { gap: 14px; color: var(--gold-light); }
+
+@media (max-width: 900px) {
+  .sbc-grid { grid-template-columns: 1fr; gap: 18px; }
+  .sbc-card { height: 360px; }
+  .sbc-wrapper { padding: 70px 0; }
+}

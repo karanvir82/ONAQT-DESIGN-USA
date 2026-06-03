@@ -1,0 +1,25 @@
+.home-heritage-teaser {
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #07080a;
+}
+.hht-bg {
+  position: absolute; inset: 0;
+  background-image: url('/images/gold_bangle_luxury.png');
+  background-size: cover; background-position: center;
+  filter: brightness(0.28) contrast(1.05);
+}
+.hht-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at center, rgba(7, 8, 10, 0.55) 0%, rgba(7, 8, 10, 0.92) 80%);
+}
+.hht-content { position: relative; max-width: 640px; }
+.hht-content .section-mini-title { color: #d4af37 !important; }
+.hht-content h2 { font-size: 2.3rem; margin-bottom: 16px; color: #f5f6f8; }
+.hht-content p { color: #a0a5b0; line-height: 1.7; margin-bottom: 30px; }
+@media (max-width: 560px) {
+  .home-heritage-teaser { padding: 70px 0; }
+  .hht-content h2 { font-size: 1.7rem; }
+}

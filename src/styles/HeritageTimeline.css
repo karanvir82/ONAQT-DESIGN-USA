@@ -1,0 +1,226 @@
+.timeline-section-wrapper {
+  padding: 100px 0;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.timeline-header h2 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+}
+.timeline-intro {
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Stepper navigation */
+.timeline-stepper {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 40px;
+  margin-bottom: 45px;
+  position: relative;
+  border-radius: 2px;
+}
+
+.step-node-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  cursor: pointer;
+}
+.step-node-wrapper:last-child {
+  flex: 0;
+}
+
+.step-connector {
+  position: absolute;
+  left: 30px;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+  z-index: 1;
+  transition: var(--transition-smooth);
+}
+.step-node-wrapper:last-child .step-connector {
+  display: none;
+}
+.step-node-wrapper.completed .step-connector {
+  background: var(--gold-dark);
+}
+
+.step-node {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-premium);
+}
+.step-node-wrapper:hover .step-node {
+  border-color: var(--border-hover);
+}
+.step-node-wrapper.active .step-node {
+  border-color: var(--gold-primary);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: var(--shadow-gold);
+}
+.step-node-wrapper.completed .step-node {
+  border-color: var(--gold-dark);
+}
+
+.step-year {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+.step-node-wrapper.active .step-year {
+  color: var(--gold-primary);
+}
+
+/* Detail Card */
+.timeline-card-viewport {
+  min-height: 380px;
+}
+
+.timeline-detail-card {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  overflow: hidden;
+  border-radius: 2px;
+  min-height: 380px;
+}
+
+.timeline-detail-image-box {
+  position: relative;
+  background-color: #030405;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-card-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.2) contrast(1.1);
+}
+.timeline-card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--bg-secondary) 95%);
+}
+
+.timeline-year-giga {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: 7.5rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 175, 55, 0.28);
+  letter-spacing: 2px;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
+body.light-theme .timeline-year-giga {
+  -webkit-text-stroke: 1px rgba(184, 144, 32, 0.35);
+}
+
+.timeline-detail-info {
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+}
+
+.timeline-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.timeline-icon {
+  color: var(--gold-primary);
+}
+.timeline-sub {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.timeline-detail-info h3 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.timeline-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.timeline-blockquote {
+  border-left: 2px solid var(--gold-primary);
+  padding-left: 15px;
+  font-style: italic;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+}
+.timeline-blockquote p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .timeline-stepper {
+    padding: 20px;
+    overflow-x: auto;
+    gap: 15px;
+  }
+  .step-connector {
+    display: none;
+  }
+  .step-node {
+    width: 50px;
+    height: 50px;
+  }
+  .timeline-detail-card {
+    grid-template-columns: 1fr;
+  }
+  .timeline-card-image-overlay {
+    background: linear-gradient(180deg, transparent, var(--bg-secondary) 95%);
+  }
+  .timeline-year-giga {
+    font-size: 4rem;
+    padding: 40px 0;
+  }
+  .timeline-detail-info {
+    padding: 30px;
+  }
+}

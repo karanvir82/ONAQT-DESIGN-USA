@@ -1,0 +1,194 @@
+/* Footer Component Styling */
+.footer-wrapper {
+  background-color: var(--bg-tertiary);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  margin-top: auto;
+}
+
+/* Trust Banner */
+.trust-banner {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  padding: 30px 0;
+}
+.trust-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+.trust-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.trust-icon {
+  color: var(--gold-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+  animation: pulseGold 2.5s infinite;
+}
+.trust-info h4 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+.trust-info p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Footer Main */
+.footer-main {
+  padding: 80px 0 60px 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 40px;
+}
+.footer-col h3 {
+  font-size: 1.15rem;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  font-weight: 550;
+}
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 30px;
+  height: 1.5px;
+  background-color: var(--gold-primary);
+}
+
+.brand-col {
+  display: flex;
+  flex-direction: column;
+}
+.footer-logo-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+.footer-logo-img {
+  height: 54px;
+  width: auto;
+}
+.brand-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 20px 0;
+  line-height: 1.6;
+}
+.heritage-badge {
+  align-self: flex-start;
+  border: 1px solid var(--gold-primary);
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--gold-primary);
+  border-radius: 2px;
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* Footer links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+.footer-links a:hover {
+  color: var(--gold-primary);
+  padding-left: 5px;
+}
+
+/* Contact Col */
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.contact-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.contact-icon {
+  color: var(--gold-primary);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.phone-lines {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+  padding: 25px 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.bottom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.bottom-container p {
+  margin: 0;
+}
+.bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bottom-links a:hover {
+  color: var(--gold-primary);
+}
+.bullet {
+  color: var(--text-muted);
+  font-size: 0.5rem;
+}
+
+/* Responsive Footer */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 30px;
+  }
+}
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-main {
+    padding: 50px 0 40px 0;
+  }
+  .bottom-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}

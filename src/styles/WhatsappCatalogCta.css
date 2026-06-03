@@ -1,0 +1,19 @@
+.wcc-wrapper { padding: 0 0 100px; background-color: var(--bg-primary); }
+.wcc-card {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 30px; padding: 50px;
+  border-left: 3px solid var(--gold-primary);
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, rgba(212,175,55,0.1), var(--card-bg));
+}
+.wcc-text h2 { font-size: 2rem; margin-bottom: 12px; }
+.wcc-text p { color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 520px; }
+.wcc-btn { flex-shrink: 0; padding: 0.95rem 2.2rem; }
+
+@media (max-width: 768px) {
+  .wcc-wrapper { padding: 0 0 70px; }
+  .wcc-card { flex-direction: column; text-align: center; padding: 36px 24px; align-items: stretch; }
+  .wcc-text p { margin: 0 auto; }
+  .wcc-btn { width: 100%; justify-content: center; }
+}
