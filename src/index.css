@@ -47,22 +47,6 @@
   --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
   --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.1);
   
-  /* Hero Theme Variables (Obsidian Dark) */
-  --hero-text-primary: #f5f6f8;
-  --hero-text-secondary: #e2e4e9;
-  --hero-font-weight-sub: 300;
-  --hero-overlay-radial: radial-gradient(circle at center, rgba(7, 8, 10, 0.32) 0%, rgba(7, 8, 10, 0.58) 100%);
-  --hero-overlay-linear: linear-gradient(180deg, rgba(7, 8, 10, 0.4) 0%, rgba(7, 8, 10, 0) 20%, rgba(7, 8, 10, 0) 80%, #07080a 100%);
-  --hero-text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.7);
-  --hero-sub-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.8);
-  --hero-text-shadow-small: 0 2px 8px rgba(0, 0, 0, 0.85);
-  --hero-text-shadow-small-p: 0 1px 5px rgba(0, 0, 0, 0.8);
-  --hero-btn-book-bg: rgba(7, 8, 10, 0.45);
-  --hero-badge-bg: rgba(7, 8, 10, 0.65);
-  --hero-badge-color: #f3e5ab;
-  --hero-badge-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  --hero-badge-border: rgba(212, 175, 55, 0.45);
-
   box-sizing: border-box;
 }
 
@@ -97,22 +81,6 @@ body.light-theme {
 
   --shadow-premium: 0 10px 30px -10px rgba(184, 144, 32, 0.12);
   --shadow-gold: 0 4px 20px rgba(184, 144, 32, 0.08);
-
-  /* Hero Theme Variables (Warm Ivory Light) */
-  --hero-text-primary: #1c1814;
-  --hero-text-secondary: #4a4238;
-  --hero-font-weight-sub: 500;
-  --hero-overlay-radial: radial-gradient(circle at center, rgba(250, 247, 242, 0.35) 0%, rgba(250, 247, 242, 0.72) 100%);
-  --hero-overlay-linear: linear-gradient(180deg, rgba(250, 247, 242, 0.5) 0%, rgba(250, 247, 242, 0) 20%, rgba(250, 247, 242, 0) 80%, #faf7f2 100%);
-  --hero-text-shadow: 0 2px 10px rgba(250, 247, 242, 0.8);
-  --hero-sub-shadow: 0 1px 4px rgba(250, 247, 242, 0.8);
-  --hero-text-shadow-small: none;
-  --hero-text-shadow-small-p: none;
-  --hero-btn-book-bg: rgba(250, 247, 242, 0.6);
-  --hero-badge-bg: rgba(250, 247, 242, 0.85);
-  --hero-badge-color: var(--gold-dark);
-  --hero-badge-shadow: 0 2px 8px rgba(184, 144, 32, 0.15);
-  --hero-badge-border: rgba(184, 144, 32, 0.35);
 }
 
 *, *::before, *::after {
