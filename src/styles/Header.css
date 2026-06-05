@@ -67,7 +67,7 @@
   user-select: none;
 }
 .logo-img {
-  height: 50px;
+  height: 68px; /* Increased size for transparent circle logo */
   width: auto;
   display: block;
 }

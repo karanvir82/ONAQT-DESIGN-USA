@@ -77,7 +77,7 @@
   align-self: flex-start;
 }
 .footer-logo-img {
-  height: 54px;
+  height: 72px; /* Increased size for transparent circle logo */
   width: auto;
 }
 .brand-desc {
