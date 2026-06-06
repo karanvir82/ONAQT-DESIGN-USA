@@ -83,6 +83,14 @@
   100% { transform: translate3d(0, 0, 0); }
 }
 
+.hero-particle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;

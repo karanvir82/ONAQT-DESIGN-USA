@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { ShieldCheck, Award, Sparkles, MapPin } from 'lucide-react';
 import '../../styles/Hero.css';
 
@@ -33,8 +34,166 @@ function CollageItem({ item }) {
 }
 
 export default function Hero({ onExploreClick, onOpenVipModal }) {
+  const canvasRef = useRef(null);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const hero = heroRef.current;
+    if (!canvas || !hero) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId;
+    let width = (canvas.width = hero.offsetWidth);
+    let height = (canvas.height = hero.offsetHeight);
+
+    const mouse = {
+      x: -1000,
+      y: -1000,
+      radius: 150,
+      active: false
+    };
+
+    const handleResize = () => {
+      width = canvas.width = hero.offsetWidth;
+      height = canvas.height = hero.offsetHeight;
+    };
+
+    const handleMouseMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+      mouse.active = false;
+    };
+
+    window.addEventListener('resize', handleResize);
+    hero.addEventListener('mousemove', handleMouseMove);
+    hero.addEventListener('mouseleave', handleMouseLeave);
+
+    // Color choices: champagne gold, diamond white, deep gold
+    const colors = [
+      'rgba(212, 175, 55, ', // Gold primary
+      'rgba(243, 229, 171, ', // Champagne
+      'rgba(255, 255, 255, ', // Diamond White
+      'rgba(184, 144, 32, '  // Gold dark
+    ];
+
+    class Particle {
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(init = false) {
+        this.x = Math.random() * width;
+        this.y = init ? Math.random() * height : height + 10;
+        this.size = Math.random() * 2 + 0.8; // 0.8px to 2.8px
+        this.baseVelocityX = (Math.random() - 0.5) * 0.2;
+        this.baseVelocityY = -0.3 - Math.random() * 0.4; // Slowly drift upwards
+        this.vx = this.baseVelocityX;
+        this.vy = this.baseVelocityY;
+        this.alpha = Math.random() * 0.6 + 0.2; // Max opacity 0.8
+        this.shimmerSpeed = Math.random() * 0.05 + 0.02;
+        this.shimmer = Math.random() * Math.PI * 2;
+        this.colorPrefix = colors[Math.floor(Math.random() * colors.length)];
+        this.isSparkle = Math.random() < 0.15; // 15% are diamond glints
+      }
+
+      update() {
+        // Add random ambient drift
+        this.vx += (Math.random() - 0.5) * 0.02;
+        this.vy += (Math.random() - 0.5) * 0.01;
+
+        // Apply velocities
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Apply decay to cursor push velocities
+        this.vx += (this.baseVelocityX - this.vx) * 0.05;
+        this.vy += (this.baseVelocityY - this.vy) * 0.05;
+
+        // Fluctuate alpha for shimmer
+        this.shimmer += this.shimmerSpeed;
+        this.currentAlpha = this.alpha * (0.2 + 0.8 * Math.abs(Math.sin(this.shimmer)));
+
+        // Cursor avoidance physics
+        if (mouse.active) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius; // 0 to 1
+            const angle = Math.atan2(dy, dx);
+            // Push away
+            this.vx += Math.cos(angle) * force * 1.5;
+            this.vy += Math.sin(angle) * force * 1.5;
+          }
+        }
+
+        // Boundary checks
+        if (this.y < -10 || this.x < -10 || this.x > width + 10) {
+          this.reset(false);
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `${this.colorPrefix}${this.currentAlpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw diamond glint cross for sparkle particles at peak shimmer
+        if (this.isSparkle && this.currentAlpha > 0.45) {
+          ctx.strokeStyle = `rgba(255, 255, 255, ${this.currentAlpha * 0.5})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          // Horizontal bar
+          ctx.moveTo(this.x - this.size * 2.5, this.y);
+          ctx.lineTo(this.x + this.size * 2.5, this.y);
+          // Vertical bar
+          ctx.moveTo(this.x, this.y - this.size * 2.5);
+          ctx.lineTo(this.x, this.y + this.size * 2.5);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Adjust particle count dynamically based on area
+    const particleCount = Math.min(100, Math.floor((width * height) / 10000));
+    const particles = Array.from({ length: particleCount }, () => new Particle());
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      hero.removeEventListener('mousemove', handleMouseMove);
+      hero.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <section className="hero-section">
+    <section ref={heroRef} className="hero-section">
+      <canvas ref={canvasRef} className="hero-particle-canvas" />
       {/* Cinematic Horizontal Scrolling Collage */}
       <div className="hero-collage-container">
         {/* Row 1 (scrolls left) */}
