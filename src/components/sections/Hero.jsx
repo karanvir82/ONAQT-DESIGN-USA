@@ -1,41 +1,26 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ShieldCheck, Award, Sparkles, MapPin } from 'lucide-react';
 import '../../styles/Hero.css';
 
-const ROW1_ITEMS = [
-  { src: '/images/bridal_gold_jewelry.png', ratio: '4/3' },
-  { src: '/images/himachali_bride_gen_1.png', ratio: '1/1' },
-  { src: '/images/lookbook_shot_1.png', ratio: '1/1' },
-  { src: '/images/himachali_bride_gen_2.png', ratio: '4/3' },
-  { src: '/images/himachali_bride_gen_4.png', ratio: '1/1' },
-  { src: '/images/himachali_bride_gen_5.png', ratio: '4/3' },
-  { src: '/images/lookbook_shot_4.png', ratio: '3/2' }
+const HERO_SLIDES = [
+  '/images/hero_jewelry_banner.png',
+  '/images/hero_slide_2.png',
+  '/images/hero_slide_3.png'
 ];
-
-const ROW2_ITEMS = [
-  { src: '/images/bridal_diamond_jewelry.png', ratio: '1/1' },
-  { src: '/images/himachali_bride_gen_3.png', ratio: '1/1' },
-  { src: '/images/lookbook_shot_2.png', ratio: '4/3' },
-  { src: '/images/himachali_bride_gen_6.png', ratio: '1/1' },
-  { src: '/images/about_heritage_story.png', ratio: '4/3' },
-  { src: '/images/himachali_bride_gen_7.png', ratio: '4/3' }
-];
-
-function CollageItem({ item }) {
-  return (
-    <div
-      className="collage-item image-item"
-      style={{
-        aspectRatio: item.ratio,
-        backgroundImage: `url('${item.src}')`
-      }}
-    />
-  );
-}
 
 export default function Hero({ onExploreClick, onOpenVipModal }) {
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    // Slideshow rotation logic
+    const slideInterval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
+
+    return () => clearInterval(slideInterval);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -78,12 +63,12 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
     hero.addEventListener('mousemove', handleMouseMove);
     hero.addEventListener('mouseleave', handleMouseLeave);
 
-    // Color choices: champagne gold, diamond white, deep gold
+    // Color choices: champagne gold, diamond white, deep gold, and bright gold
     const colors = [
       'rgba(212, 175, 55, ', // Gold primary
       'rgba(243, 229, 171, ', // Champagne
       'rgba(255, 255, 255, ', // Diamond White
-      'rgba(184, 144, 32, '  // Gold dark
+      'rgba(254, 215, 102, '  // Bright Gold
     ];
 
     class Particle {
@@ -94,16 +79,16 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
       reset(init = false) {
         this.x = Math.random() * width;
         this.y = init ? Math.random() * height : height + 10;
-        this.size = Math.random() * 2 + 0.8; // 0.8px to 2.8px
-        this.baseVelocityX = (Math.random() - 0.5) * 0.2;
-        this.baseVelocityY = -0.3 - Math.random() * 0.4; // Slowly drift upwards
+        this.size = Math.random() * 2.2 + 1.2; // Increased size: 1.2px to 3.4px
+        this.baseVelocityX = (Math.random() - 0.5) * 0.25;
+        this.baseVelocityY = -0.35 - Math.random() * 0.45; // Slightly faster drift
         this.vx = this.baseVelocityX;
         this.vy = this.baseVelocityY;
-        this.alpha = Math.random() * 0.6 + 0.2; // Max opacity 0.8
+        this.alpha = Math.random() * 0.35 + 0.55; // Increased alpha: 0.55 to 0.90 base opacity
         this.shimmerSpeed = Math.random() * 0.05 + 0.02;
         this.shimmer = Math.random() * Math.PI * 2;
         this.colorPrefix = colors[Math.floor(Math.random() * colors.length)];
-        this.isSparkle = Math.random() < 0.15; // 15% are diamond glints
+        this.isSparkle = Math.random() < 0.22; // Increased sparkle rate to 22%
       }
 
       update() {
@@ -119,9 +104,9 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
         this.vx += (this.baseVelocityX - this.vx) * 0.05;
         this.vy += (this.baseVelocityY - this.vy) * 0.05;
 
-        // Fluctuate alpha for shimmer
+        // Fluctuate alpha for shimmer (higher minimum alpha for visibility)
         this.shimmer += this.shimmerSpeed;
-        this.currentAlpha = this.alpha * (0.2 + 0.8 * Math.abs(Math.sin(this.shimmer)));
+        this.currentAlpha = this.alpha * (0.35 + 0.65 * Math.abs(Math.sin(this.shimmer)));
 
         // Cursor avoidance physics
         if (mouse.active) {
@@ -151,8 +136,8 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
         ctx.fill();
 
         // Draw diamond glint cross for sparkle particles at peak shimmer
-        if (this.isSparkle && this.currentAlpha > 0.45) {
-          ctx.strokeStyle = `rgba(255, 255, 255, ${this.currentAlpha * 0.5})`;
+        if (this.isSparkle && this.currentAlpha > 0.5) {
+          ctx.strokeStyle = `rgba(255, 255, 255, ${this.currentAlpha * 0.55})`;
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           // Horizontal bar
@@ -166,8 +151,8 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
       }
     }
 
-    // Adjust particle count dynamically based on area
-    const particleCount = Math.min(100, Math.floor((width * height) / 10000));
+    // Adjust particle count dynamically based on area (increased multiplier)
+    const particleCount = Math.min(130, Math.floor((width * height) / 8000));
     const particles = Array.from({ length: particleCount }, () => new Particle());
 
     const animate = () => {
@@ -194,25 +179,16 @@ export default function Hero({ onExploreClick, onOpenVipModal }) {
   return (
     <section ref={heroRef} className="hero-section">
       <canvas ref={canvasRef} className="hero-particle-canvas" />
-      {/* Cinematic Horizontal Scrolling Collage */}
-      <div className="hero-collage-container">
-        {/* Row 1 (scrolls left) */}
-        <div className="collage-row row-1">
-          <div className="collage-track scroll-left">
-            {ROW1_ITEMS.concat(ROW1_ITEMS).map((item, idx) => (
-              <CollageItem key={`r1-${idx}`} item={item} />
-            ))}
-          </div>
-        </div>
 
-        {/* Row 2 (scrolls right) */}
-        <div className="collage-row row-2">
-          <div className="collage-track scroll-right">
-            {ROW2_ITEMS.concat(ROW2_ITEMS).map((item, idx) => (
-              <CollageItem key={`r2-${idx}`} item={item} />
-            ))}
-          </div>
-        </div>
+      {/* Cinematic Full-Screen Ken Burns Slideshow */}
+      <div className="hero-slideshow-container">
+        {HERO_SLIDES.map((slideSrc, idx) => (
+          <div
+            key={idx}
+            className={`hero-slide ${idx === activeSlide ? 'active' : ''}`}
+            style={{ backgroundImage: `url('${slideSrc}')` }}
+          />
+        ))}
       </div>
 
       <div className="hero-overlay"></div>
