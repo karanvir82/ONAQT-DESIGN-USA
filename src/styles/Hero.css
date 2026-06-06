@@ -10,77 +10,37 @@
   background-color: var(--bg-primary);
 }
 
-.hero-collage-container {
+.hero-slideshow-container {
   position: absolute;
   inset: 0;
   z-index: 1;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px; /* Reduced gap between rows */
-  padding: 0; /* Remove vertical padding to let rows fill all the way to edges */
-  opacity: 0.95; /* High overall collage container opacity for maximum visibility */
-  filter: brightness(1.05) contrast(1.02) saturate(1.05); /* Boost vibrancy and brightness of bride portraits */
-  background-color: var(--bg-primary);
+  background-color: #07080a;
 }
 
-.collage-row {
-  flex: 1; /* Divide container height equally so rows stretch to fill the screen */
-  min-height: 280px;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-.collage-track {
-  display: flex;
-  gap: 16px; /* Consistent gap size */
-  height: 100%;
-  width: max-content;
-  will-change: transform;
-}
-
-.collage-row.row-1 .collage-track {
-  animation: scrollTrackLeft 50s linear infinite;
-}
-
-.collage-row.row-2 .collage-track {
-  animation: scrollTrackRight 65s linear infinite;
-}
-
-.collage-item {
-  height: 100%;
-  width: auto;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.15);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  background-color: var(--bg-tertiary);
-  transition: transform 0.4s ease;
-}
-
-.collage-item:hover {
-  transform: scale(1.03);
-  border-color: rgba(212, 175, 55, 0.35);
-}
-
-.collage-item.image-item {
+.hero-slide {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.94; /* Highly visible Pahari brides background at near full opacity */
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  transform: scale(1);
+  pointer-events: none;
 }
 
-@keyframes scrollTrackLeft {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+.hero-slide.active {
+  opacity: 0.85; /* high visibility while allowing ambient overlay adjustments */
+  animation: kenBurns 6.5s linear forwards;
 }
 
-@keyframes scrollTrackRight {
-  0% { transform: translate3d(-50%, 0, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1.045); /* Subtle 3.5% movement for Cartier/Tiffany luxury feel */
+  }
 }
 
 .hero-particle-canvas {
