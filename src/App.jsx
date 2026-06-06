@@ -134,6 +134,7 @@ function App() {
       <Footer
         onNavigate={handleNavigate}
         onOpenVipModal={() => setVipModalOpen(true)}
+        theme={theme}
       />
 
       {/* Floating WhatsApp contact button (site-wide) */}

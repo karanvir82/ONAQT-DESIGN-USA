@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Clock, Award, ShieldCheck, RefreshCw } from 'lucid
 import { whatsappLink, SITE } from '../../config/site';
 import '../../styles/Footer.css';
 
-export default function Footer({ onNavigate, onOpenVipModal }) {
+export default function Footer({ onNavigate, onOpenVipModal, theme }) {
   return (
     <footer className="footer-wrapper">
       {/* Premium Trust Badges Banner */}
@@ -39,8 +39,12 @@ export default function Footer({ onNavigate, onOpenVipModal }) {
           {/* Brand Info */}
           <div className="footer-col brand-col">
             <Link to="/" className="footer-logo-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              {SITE.logoFooter ? (
-                <img src={SITE.logoFooter} alt={SITE.brand} className="footer-logo-img" />
+              {SITE.logoFooterDark || SITE.logoFooterLight ? (
+                <img 
+                  src={theme === 'light' ? SITE.logoFooterLight : SITE.logoFooterDark} 
+                  alt={SITE.brand} 
+                  className="footer-logo-img" 
+                />
               ) : (
                 <>
                   <span className="logo-satya text-gold-gradient">SATYA</span>

@@ -64,8 +64,12 @@ export default function Header({ wishlistCount, onOpenWishlist, onOpenVipModal, 
         <div className="container header-container">
           {/* Logo */}
           <Link to="/" className="logo-area" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            {SITE.logoHeader ? (
-              <img src={SITE.logoHeader} alt={SITE.brand} className="logo-img" />
+            {SITE.logoHeaderDark || SITE.logoHeaderLight ? (
+              <img 
+                src={theme === 'light' ? SITE.logoHeaderLight : SITE.logoHeaderDark} 
+                alt={SITE.brand} 
+                className="logo-img" 
+              />
             ) : (
               <>
                 <span className="logo-satya">SATYA</span>
