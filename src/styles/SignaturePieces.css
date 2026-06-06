@@ -17,27 +17,11 @@
   display: block;
   overflow: hidden;
   transition: var(--transition-smooth);
-}
-.luxury-tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
 }
-.luxury-tilt-card:hover {
+.sig-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-premium);
-}
-.card-shine-glare {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at var(--shine-x, 50%) var(--shine-y, 50%),
-    rgba(212, 175, 55, var(--shine-opacity, 0)) 0%,
-    transparent 60%
-  );
-  z-index: 2;
-  transition: background 0.1s ease-out;
 }
 .sig-img {
   position: relative;

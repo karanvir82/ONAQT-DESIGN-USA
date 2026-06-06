@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../ui/Reveal';
+import TiltCard from '../ui/TiltCard';
 import '../../styles/ShopByCollection.css';
 
 const COLLECTIONS = [
@@ -37,15 +38,17 @@ export default function ShopByCollection() {
         <div className="sbc-grid">
           {COLLECTIONS.map((c, i) => (
             <Reveal key={c.id} delay={i * 120}>
-              <Link to={`/collection/${c.id}`} className={`sbc-card sbc-card-${i}`}>
-                <div className="sbc-img" style={{ backgroundImage: `url(${c.image})` }} />
-                <div className="sbc-overlay" />
-                <div className="sbc-content">
-                  <span className="sbc-sub">{c.sub}</span>
-                  <h3>{c.label}</h3>
-                  <span className="sbc-cta">Explore Collection <ArrowRight size={16} /></span>
-                </div>
-              </Link>
+              <TiltCard className="sbc-tilt-wrapper" maxRotation={8} scale={1.03}>
+                <Link to={`/collection/${c.id}`} className={`sbc-card sbc-card-${i}`}>
+                  <div className="sbc-img" style={{ backgroundImage: `url(${c.image})` }} />
+                  <div className="sbc-overlay" />
+                  <div className="sbc-content">
+                    <span className="sbc-sub">{c.sub}</span>
+                    <h3>{c.label}</h3>
+                    <span className="sbc-cta">Explore Collection <ArrowRight size={16} /></span>
+                  </div>
+                </Link>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import { productsData } from './data/products';
@@ -12,6 +12,7 @@ import './styles/App.css';
 function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const glowRef = useRef(null);
   const [wishlist, setWishlist] = useState(() => {
     const saved = localStorage.getItem('satya_wishlist');
     if (saved) {
@@ -43,6 +44,31 @@ function App() {
     }
     localStorage.setItem('satya_theme', theme);
   }, [theme]);
+
+  // Handle cursor spotlight positioning (60fps animation)
+  useEffect(() => {
+    const glow = glowRef.current;
+    if (!glow) return;
+
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouchDevice) {
+      glow.style.display = 'none';
+      return;
+    }
+
+    const handleMouseMove = (e) => {
+      requestAnimationFrame(() => {
+        if (glow) {
+          glow.style.transform = `translate3d(${e.clientX - 150}px, ${e.clientY - 150}px, 0)`;
+        }
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const handleToggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -107,6 +133,7 @@ function App() {
 
   return (
     <>
+      <div ref={glowRef} className="cursor-glow" />
       <Header 
         wishlistCount={wishlist.length}
         onOpenWishlist={() => setWishlistOpen(true)}

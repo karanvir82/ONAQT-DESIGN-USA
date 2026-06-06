@@ -156,11 +156,21 @@
   color: var(--gold-primary);
   background: var(--action-hover);
 }
+.theme-toggle {
+  perspective: 1000px;
+}
 .theme-toggle svg {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
 }
 .theme-toggle:hover svg {
-  transform: rotate(45deg);
+  transform: scale(1.1) rotate(45deg);
+}
+body.light-theme .theme-toggle svg {
+  transform: rotateY(180deg);
+}
+body.light-theme .theme-toggle:hover svg {
+  transform: scale(1.1) rotateY(180deg) rotateZ(45deg);
 }
 .heart-filled {
   fill: #e63946;

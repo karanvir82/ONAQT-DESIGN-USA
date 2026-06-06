@@ -128,27 +128,11 @@
   display: flex;
   flex-direction: column;
   transition: var(--transition-smooth);
+  height: 100%;
 }
-.luxury-tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-}
-.luxury-tilt-card:hover {
+.product-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-premium);
-}
-.card-shine-glare {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at var(--shine-x, 50%) var(--shine-y, 50%),
-    rgba(212, 175, 55, var(--shine-opacity, 0)) 0%,
-    transparent 60%
-  );
-  z-index: 2;
-  transition: background 0.1s ease-out;
 }
 
 .product-image-box {

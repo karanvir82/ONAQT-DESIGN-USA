@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Eye, Heart, MessageSquare, Sparkles } from 'lucide-react';
 import { productsData } from '../../data/products';
 import Reveal from '../ui/Reveal';
+import TiltCard from '../ui/TiltCard';
 import { whatsappLink } from '../../config/site';
 import '../../styles/ProductCatalog.css';
 
@@ -22,33 +23,6 @@ export default function ProductCatalog({
     setPrevInitialType(initialType);
     setSelectedType(initialType);
   }
-
-  const handleMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = -(y - centerY) / (rect.height / 14);
-    const rotateY = (x - centerX) / (rect.width / 14);
-    
-    const shineX = (x / rect.width) * 100;
-    const shineY = (y / rect.height) * 100;
-    
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-    card.style.setProperty('--shine-x', `${shineX}%`);
-    card.style.setProperty('--shine-y', `${shineY}%`);
-    card.style.setProperty('--shine-opacity', '0.12');
-  };
-
-  const handleMouseLeave = (e) => {
-    const card = e.currentTarget;
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-    card.style.setProperty('--shine-opacity', '0');
-  };
 
   // On a dedicated category page the category is fixed and its tabs/header are hidden
   const activeCategory = lockedCategory || selectedCategory;
@@ -126,13 +100,12 @@ export default function ProductCatalog({
           {filteredProducts.map(product => {
             const isWishlisted = wishlist.includes(product.id);
             return (
-              <div 
+              <TiltCard 
                 key={product.id} 
-                className="product-card glass-panel luxury-tilt-card"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+                className="product-card glass-panel"
+                maxRotation={6}
+                scale={1.02}
               >
-                <div className="card-shine-glare" />
                 {/* Product Image Box */}
                 <div 
                   className="product-image-box"
@@ -201,7 +174,7 @@ export default function ProductCatalog({
                     Enquire on WhatsApp
                   </button>
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>
