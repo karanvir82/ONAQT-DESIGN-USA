@@ -14507,6 +14507,1226 @@
 #loginScreen .right-panel {  padding: 48px 24px;  }
 }
 </style>
+<style id="v10-dashboard-styles">
+/* Aliases so v10 dashboard vars resolve against demo tokens (light+dark aware) */
+:root,body{--card-bg:var(--white,#fff);--text:var(--gray-900,#1a1a1a);--muted:var(--gray-500,#6b7280);--border:var(--gray-200,#e5e7eb);}
+/* ====== V10 DASHBOARD WIDGET STYLES (merged) ====== */
+/* ============ V10 STYLES (injected) ============ */
+/* ============================================================
+   ONAQT v10 — Role-Based Dashboard & Reports Hub Styles
+   ============================================================ */
+
+/* === Role Tab Switcher === */
+.v10-role-bar {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 18px;
+  background:var(--card-bg, #fff);
+  border:1px solid var(--border, #e5e7eb);
+  border-radius:12px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.v10-role-bar-label {
+  font-size:12px;
+  color:var(--muted, #6b7280);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  margin-right:4px;
+}
+.v10-role-tab {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 13px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--muted, #555);
+  background:transparent;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:all 0.15s;
+  white-space:nowrap;
+}
+.v10-role-tab:hover {
+  background:var(--accent-light, #f1f5f4);
+  color:var(--text, #1a1a1a);
+}
+.v10-role-tab.active {
+  background:#0F5132;
+  color:#fff;
+  border-color:#0F5132;
+  box-shadow:0 2px 6px rgba(15,81,50,0.18);
+}
+.v10-role-tab .role-code {
+  font-size:11px;
+  opacity:0.7;
+  font-weight:700;
+}
+.v10-role-tab.active .role-code {
+  opacity:0.85;
+}
+.v10-role-bar-actions {
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+}
+.v10-action-btn {
+  padding:7px 14px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  border:1px solid var(--border, #e5e7eb);
+  background:var(--card-bg, #fff);
+  color:var(--text, #1a1a1a);
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  transition:all 0.15s;
+}
+.v10-action-btn:hover {
+  background:var(--accent-light, #f1f5f4);
+  border-color:#0F5132;
+  color:#0F5132;
+}
+.v10-action-btn svg {
+  width:14px;
+  height:14px;
+}
+.v10-action-btn.primary {
+  background:#0F5132;
+  color:#fff;
+  border-color:#0F5132;
+}
+.v10-action-btn.primary:hover {
+  background:#0a3d24;
+  color:#fff;
+}
+
+/* === Dashboard Grid (12-col) === */
+.v10-dash-grid {
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+
+/* === Widget Card Base === */
+.v10-widget {
+  background:var(--card-bg, #fff);
+  border:1px solid var(--border, #e5e7eb);
+  border-radius:12px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:160px;
+  position:relative;
+  transition:box-shadow 0.15s;
+}
+.v10-widget:hover {
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+.v10-widget-header {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+.v10-widget-title {
+  font-size:13px;
+  font-weight:700;
+  color:var(--text, #1a1a1a);
+  letter-spacing:-0.01em;
+  line-height:1.3;
+}
+.v10-widget-sub {
+  font-size:11px;
+  color:var(--muted, #6b7280);
+  margin-top:1px;
+}
+.v10-widget-badge {
+  font-size:10px;
+  padding:2px 7px;
+  border-radius:5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  background:var(--accent-light, #f1f5f4);
+  color:var(--muted, #6b7280);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.v10-widget-badge.fin   { background:#dcfce7; color:#066f3a; }
+.v10-widget-badge.proj  { background:#dbeafe; color:#1e40af; }
+.v10-widget-badge.work  { background:#fed7aa; color:#9a3412; }
+.v10-widget-badge.alert { background:#fee2e2; color:#991b1b; }
+
+/* Grid spans */
+.span-3  { grid-column:span 3; }
+.span-4  { grid-column:span 4; }
+.span-6  { grid-column:span 6; }
+.span-8  { grid-column:span 8; }
+.span-12 { grid-column:span 12; }
+
+/* Trailing orphan widget stretches to fill its row for a symmetrical bottom edge */
+.v10-dash-grid .v10-widget.v10-fill-row { grid-column:1 / -1; }
+
+@media (max-width:1100px) {
+  .span-3, .span-4 { grid-column:span 6; }
+  .v10-dash-grid .v10-widget.v10-fill-row { grid-column:1 / -1; }
+}
+@media (max-width:680px) {
+  .v10-dash-grid { grid-template-columns:1fr; }
+  .span-3, .span-4, .span-6, .span-8, .span-12 { grid-column:span 1; }
+}
+
+/* === Big Number Widget === */
+.v10-big-number {
+  font-size:30px;
+  font-weight:800;
+  color:var(--text, #1a1a1a);
+  letter-spacing:-0.02em;
+  line-height:1.1;
+}
+.v10-big-number .currency {
+  font-size:18px;
+  color:var(--muted, #6b7280);
+  font-weight:600;
+  margin-right:2px;
+}
+.v10-delta {
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  font-size:12px;
+  font-weight:700;
+  padding:3px 7px;
+  border-radius:5px;
+}
+.v10-delta.pos { background:#dcfce7; color:#066f3a; }
+.v10-delta.neg { background:#fee2e2; color:#991b1b; }
+.v10-delta.neu { background:#f1f5f4; color:#6b7280; }
+
+/* === Sparkline / Bar / Chart common === */
+.v10-chart-wrap {
+  flex:1;
+  display:flex;
+  align-items:flex-end;
+  min-height:50px;
+}
+.v10-chart-wrap svg { width:100%; height:100%; }
+
+/* === Bucket Bars (AP/AR Aging) === */
+.v10-bucket-row {
+  display:flex;
+  gap:2px;
+  height:32px;
+  border-radius:6px;
+  overflow:hidden;
+  margin-top:6px;
+}
+.v10-bucket {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  position:relative;
+  cursor:pointer;
+  transition:filter 0.15s;
+}
+.v10-bucket:hover { filter:brightness(1.1); }
+.v10-bucket-0 { background:#10b981; }
+.v10-bucket-1 { background:#84cc16; }
+.v10-bucket-2 { background:#facc15; color:#7c2d12; }
+.v10-bucket-3 { background:#f97316; }
+.v10-bucket-4 { background:#dc2626; }
+.v10-bucket-labels {
+  display:flex;
+  gap:2px;
+  margin-top:4px;
+  font-size:10px;
+  color:var(--muted);
+}
+.v10-bucket-labels span {
+  flex:1;
+  text-align:center;
+}
+
+/* === Gauge === */
+.v10-gauges {
+  display:flex;
+  gap:12px;
+  justify-content:space-around;
+  align-items:center;
+  flex:1;
+}
+.v10-gauge {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.v10-gauge svg {
+  width:90px;
+  height:50px;
+}
+.v10-gauge-val {
+  font-size:18px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-0.01em;
+}
+.v10-gauge-label {
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+
+/* === Mini Bar List === */
+.v10-bar-list {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:4px;
+}
+.v10-bar-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+}
+.v10-bar-row .name {
+  flex:0 0 110px;
+  color:var(--text);
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.v10-bar-row .bar {
+  flex:1;
+  height:8px;
+  background:var(--accent-light, #f1f5f4);
+  border-radius:4px;
+  overflow:hidden;
+}
+.v10-bar-row .bar-fill {
+  height:100%;
+  background:linear-gradient(90deg, #10b981, #059669);
+  border-radius:4px;
+}
+.v10-bar-row .val {
+  font-weight:700;
+  color:var(--text);
+  font-variant-numeric:tabular-nums;
+  font-size:11px;
+}
+
+/* === Funnel === */
+.v10-funnel {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-top:4px;
+}
+.v10-funnel-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.v10-funnel-bar {
+  height:30px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  padding:0 10px;
+  font-size:12px;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:-0.01em;
+  flex-shrink:0;
+}
+.v10-funnel-info {
+  font-size:11px;
+  color:var(--muted);
+}
+.v10-funnel-info strong {
+  color:var(--text);
+}
+
+/* === Pipeline Pills === */
+.v10-pipe-strip {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.v10-pipe {
+  flex:1;
+  min-width:90px;
+  padding:8px 10px;
+  border-radius:8px;
+  background:var(--accent-light, #f1f5f4);
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.v10-pipe-num {
+  font-size:18px;
+  font-weight:800;
+  color:var(--text);
+}
+.v10-pipe-lbl {
+  font-size:10px;
+  font-weight:700;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+/* === Compact List === */
+.v10-list {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:4px;
+  max-height:200px;
+  overflow-y:auto;
+}
+.v10-list-item {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:7px;
+  background:var(--accent-light, #fafafa);
+  font-size:12px;
+}
+.v10-list-item:hover { background:#f1f5f4; }
+.v10-list-item .ico {
+  width:24px;
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  flex-shrink:0;
+}
+.v10-list-item .ico.amber { background:#fef3c7; color:#92400e; }
+.v10-list-item .ico.red { background:#fee2e2; color:#991b1b; }
+.v10-list-item .ico.green { background:#dcfce7; color:#065f46; }
+.v10-list-item .ico.blue { background:#dbeafe; color:#1e40af; }
+.v10-list-item .ico.purple { background:#f3e8ff; color:#6b21a8; }
+.v10-list-item .body {
+  flex:1;
+  min-width:0;
+}
+.v10-list-item .body .ttl {
+  font-weight:700;
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.v10-list-item .body .meta {
+  color:var(--muted);
+  font-size:11px;
+  margin-top:1px;
+}
+.v10-list-item .right {
+  font-weight:700;
+  color:var(--text);
+  font-size:11px;
+  flex-shrink:0;
+}
+
+/* === Alert Banner === */
+.v10-alerts-strip {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.v10-alert-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.v10-alert-pill:hover { transform:translateY(-1px); }
+.v10-alert-pill.red    { background:#fee2e2; color:#991b1b; }
+.v10-alert-pill.amber  { background:#fef3c7; color:#92400e; }
+.v10-alert-pill.blue   { background:#dbeafe; color:#1e40af; }
+.v10-alert-pill .cnt {
+  background:rgba(255,255,255,0.6);
+  padding:1px 6px;
+  border-radius:10px;
+  font-size:11px;
+}
+
+/* === Critical Alerts — pinned top banner (pill style) === */
+.v10-crit {
+  background:var(--card-bg, #fff);
+  border:1px solid var(--border, #e5e7eb);
+  border-radius:14px;
+  padding:11px 14px 13px;
+  margin-bottom:14px;
+  position:relative;
+}
+.v10-crit-head {
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-bottom:9px;
+}
+.v10-crit-head .v10-crit-heading { flex:1; min-width:0; }
+.v10-crit-title {
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:-0.01em;
+  color:var(--text, #1a1a1a);
+  line-height:1.2;
+}
+.v10-crit-subtitle {
+  font-size:10.5px;
+  font-weight:500;
+  color:var(--muted, #6b7280);
+  margin-top:2px;
+}
+.v10-crit-count {
+  font-size:9px;
+  font-weight:800;
+  color:var(--danger, #b85c52);
+  background:var(--danger-light, #faeeed);
+  padding:2px 7px;
+  border-radius:6px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.v10-crit-grid {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.v10-crit-card {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 10px;
+  border-radius:999px;
+  border:none;
+  background:var(--cr-tint, #faeeed);
+  cursor:pointer;
+  transition:all 0.15s;
+  text-align:left;
+}
+.v10-crit-card:hover {
+  transform:translateY(-1px);
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+  filter:brightness(0.97);
+}
+.v10-crit-card .v10-crit-text {
+  font-size:10.5px;
+  font-weight:700;
+  color:var(--cr-accent, #b85c52);
+  white-space:nowrap;
+  line-height:1;
+}
+.v10-crit-card .v10-crit-tag {
+  font-size:9.5px;
+  font-weight:700;
+  color:var(--cr-accent, #b85c52);
+  background:var(--card-bg, #fff);
+  padding:2px 7px;
+  border-radius:999px;
+  white-space:nowrap;
+  line-height:1;
+}
+/* per-pill color themes — mapped to the app palette (shifts per theme) */
+.v10-crit-card.red    { --cr-accent:var(--card1-color, #b85c52); --cr-tint:var(--card1-icon, rgba(200,120,112,0.14)); }
+.v10-crit-card.cta    { --cr-accent:var(--card2-color, #3d7a52); --cr-tint:var(--card2-icon, rgba(80,150,95,0.14)); }
+.v10-crit-card.amber  { --cr-accent:var(--card3-color, #9a7020); --cr-tint:var(--card3-icon, rgba(190,140,50,0.14)); }
+.v10-crit-card.violet { --cr-accent:var(--card4-color, #6050a8); --cr-tint:var(--card4-icon, rgba(110,95,180,0.14)); }
+.v10-crit-card.blue   { --cr-accent:#2f6fc4; --cr-tint:#dde9f7; }
+[data-dark="true"] .v10-crit { background:#1e2130; border-color:#2d3145; }
+[data-dark="true"] .v10-crit-card .v10-crit-tag { background:rgba(255,255,255,0.12); }
+[data-dark="true"] .v10-crit-card.blue { --cr-accent:#7fb0ec; --cr-tint:rgba(47,111,196,0.25); }
+
+/* === Approvals Pending — home banner === */
+.v10-appr {
+  background:var(--card-bg, #fff);
+  border:1px solid var(--border, #e5e7eb);
+  border-radius:12px;
+  padding:13px 14px;
+  margin-bottom:18px;
+}
+.v10-appr-head {
+  display:flex; align-items:center; gap:9px; margin-bottom:11px;
+}
+.v10-appr-head .ic {
+  width:26px; height:26px; border-radius:7px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--primary-light, #e6f0e8); color:var(--primary, #2D4A35);
+}
+.v10-appr-head .ic svg { width:15px; height:15px; }
+.v10-appr-title {
+  font-size:11px; font-weight:800; text-transform:uppercase;
+  letter-spacing:0.07em; color:var(--text, #1a1a1a);
+}
+.v10-appr-count {
+  font-size:10px; font-weight:800; color:var(--primary, #2D4A35);
+  background:var(--primary-light, #e6f0e8);
+  padding:2px 8px; border-radius:20px; margin-left:6px; white-space:nowrap;
+}
+.v10-appr-jump {
+  margin-left:auto;
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:11.5px; font-weight:700; color:var(--primary, #2D4A35);
+  background:transparent; border:1px solid var(--border, #e5e7eb);
+  padding:6px 11px; border-radius:8px; cursor:pointer; transition:all 0.15s;
+}
+.v10-appr-jump:hover { background:var(--primary, #2D4A35); color:#fff; border-color:var(--primary, #2D4A35); }
+.v10-appr-jump svg { width:13px; height:13px; }
+.v10-appr-grid {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;
+}
+@media (max-width:980px) { .v10-appr-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:560px) { .v10-appr-grid { grid-template-columns:1fr; } }
+.v10-appr-card {
+  display:flex; align-items:center; gap:10px;
+  padding:11px 12px; border-radius:10px;
+  border:1px solid var(--border, #e5e7eb);
+  background:var(--accent-light, #f8f6f2);
+  cursor:pointer; transition:all 0.15s; text-align:left;
+}
+.v10-appr-card:hover {
+  transform:translateY(-1px);
+  box-shadow:0 4px 14px rgba(0,0,0,0.07);
+  border-color:var(--primary, #2D4A35);
+}
+.v10-appr-card .num {
+  font-size:22px; font-weight:800; line-height:1; color:var(--primary, #2D4A35);
+  font-variant-numeric:tabular-nums; min-width:30px;
+}
+.v10-appr-card .lbl { font-size:11.5px; font-weight:700; color:var(--text, #1a1a1a); line-height:1.25; }
+.v10-appr-card .sub { font-size:10px; color:var(--muted, #6b7280); margin-top:2px; }
+[data-dark="true"] .v10-appr { background:#1e2130; border-color:#2d3145; }
+[data-dark="true"] .v10-appr-card { background:#161824; border-color:#2d3145; }
+
+/* === Approvals Pending — compact vertical list (E2 widget) === */
+.v10-appr-list {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  margin-top:6px;
+  max-height:230px;
+  overflow-y:auto;
+}
+.v10-appr-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 10px;
+  border-radius:8px;
+  border:1px solid var(--border, #e5e7eb);
+  background:var(--accent-light, #f8f6f2);
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.v10-appr-row:hover {
+  border-color:var(--primary, #2D4A35);
+  background:#f1f5f4;
+}
+.v10-appr-row .cnt {
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  color:var(--primary, #2D4A35);
+  background:var(--primary-light, #e6f0e8);
+  font-variant-numeric:tabular-nums;
+  min-width:22px;
+  height:22px;
+  padding:0 6px;
+  border-radius:7px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.v10-appr-row .info {
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  min-width:0;
+  flex:1;
+}
+.v10-appr-row .info .lbl {
+  font-size:12px;
+  font-weight:700;
+  color:var(--text, #1a1a1a);
+  white-space:nowrap;
+}
+.v10-appr-row .info .sub {
+  font-size:10.5px;
+  color:var(--muted, #6b7280);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+[data-dark="true"] .v10-appr-row { background:#161824; border-color:#2d3145; }
+
+/* === Approvals Pending — dedicated page (compact) === */
+#page-approvals-pending .ap-note {
+  display:flex; align-items:flex-start; gap:7px;
+  background:var(--warning-light, #fdf4e7);
+  border:1px solid color-mix(in srgb, var(--warning, #b8893a) 30%, transparent);
+  border-radius:8px; padding:7px 10px; margin-bottom:11px;
+  font-size:11px; color:var(--gray-700, #3E3A35); line-height:1.45;
+}
+#page-approvals-pending .ap-note svg { width:14px; height:14px; color:var(--warning, #b8893a); flex-shrink:0; margin-top:1px; }
+#page-approvals-pending .ap-note strong { color:var(--gray-900, #1A1714); }
+#page-approvals-pending .ap-rolebar {
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:12px;
+}
+#page-approvals-pending .ap-rolebar .lbl {
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+  color:var(--muted, #6b7280); margin-right:2px;
+}
+#page-approvals-pending .ap-role-tab {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 11px; border-radius:8px; font-size:11.5px; font-weight:700;
+  color:var(--gray-600, #5C5650); background:var(--gray-50, #F5F2EC);
+  border:1px solid var(--gray-200, #DDD9D0); cursor:pointer; transition:all 0.15s;
+}
+#page-approvals-pending .ap-role-tab:hover { border-color:var(--primary, #2D4A35); color:var(--primary, #2D4A35); }
+#page-approvals-pending .ap-role-tab.active {
+  background:var(--primary, #2D4A35); color:#fff; border-color:var(--primary, #2D4A35);
+  box-shadow:0 2px 6px color-mix(in srgb, var(--primary, #2D4A35) 26%, transparent);
+}
+#page-approvals-pending .ap-role-tab .code {
+  font-size:9px; font-weight:800; opacity:0.7;
+  background:rgba(0,0,0,0.06); padding:1px 5px; border-radius:4px;
+}
+#page-approvals-pending .ap-role-tab.active .code { background:rgba(255,255,255,0.18); opacity:0.95; }
+#page-approvals-pending .ap-role-tab .badge {
+  font-size:10px; font-weight:800; background:var(--danger, #b85c52); color:#fff;
+  min-width:16px; height:16px; padding:0 4px; border-radius:8px;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+#page-approvals-pending .ap-role-tab.active .badge { background:rgba(255,255,255,0.22); }
+[data-dark="true"] #page-approvals-pending .ap-role-tab { background:#161824; border-color:#2d3145; color:var(--gray-300); }
+#page-approvals-pending .ap-scroll { flex:1; min-height:0; overflow:auto; padding:14px 18px; }
+#page-approvals-pending .ap-panel { display:none; }
+#page-approvals-pending .ap-panel.active { display:block; }
+#page-approvals-pending .ap-panel-title {
+  font-size:12px; font-weight:700; font-family:'Fraunces', serif; color:var(--gray-900, #1A1714);
+  margin-bottom:2px;
+}
+#page-approvals-pending .ap-panel-sub { font-size:11px; color:var(--gray-500, #7A7268); margin-bottom:11px; }
+#page-approvals-pending .ap-cat-grid {
+  display:grid; grid-template-columns:repeat(2, 1fr); gap:9px;
+}
+@media (max-width:900px) { #page-approvals-pending .ap-cat-grid { grid-template-columns:1fr; } }
+#page-approvals-pending .ap-cat {
+  display:flex; align-items:center; gap:10px;
+  background:var(--white, #fff); border:1px solid var(--gray-200, #DDD9D0);
+  border-radius:9px; padding:10px 12px; cursor:pointer; transition:all 0.15s;
+  position:relative; overflow:hidden;
+}
+#page-approvals-pending .ap-cat::before {
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--primary, #2D4A35);
+}
+#page-approvals-pending .ap-cat:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.07); border-color:var(--primary, #2D4A35); }
+[data-dark="true"] #page-approvals-pending .ap-cat { background:#1e2130; border-color:#2d3145; }
+#page-approvals-pending .ap-cat-ico {
+  width:34px; height:34px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--primary-light, #e6f0e8); color:var(--primary, #2D4A35);
+}
+#page-approvals-pending .ap-cat-ico svg { width:17px; height:17px; }
+#page-approvals-pending .ap-cat-body { flex:1; min-width:0; }
+#page-approvals-pending .ap-cat-name { font-size:12px; font-weight:700; color:var(--gray-900, #1A1714); line-height:1.3; }
+#page-approvals-pending .ap-cat-meta { font-size:10.5px; color:var(--gray-500, #7A7268); margin-top:1px; }
+#page-approvals-pending .ap-cat-meta code {
+  font-family:'Courier New', monospace; font-size:10px; color:var(--primary, #2D4A35);
+  background:var(--primary-light, #e6f0e8); padding:1px 5px; border-radius:4px;
+}
+#page-approvals-pending .ap-cat-count {
+  font-size:17px; font-weight:800; color:var(--gray-900, #1A1714);
+  font-variant-numeric:tabular-nums; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end; gap:2px;
+}
+#page-approvals-pending .ap-cat-count .pct { font-size:9.5px; font-weight:700; color:var(--danger, #b85c52); }
+#page-approvals-pending .ap-cat-arrow { color:var(--gray-300, #C5C0B5); flex-shrink:0; }
+#page-approvals-pending .ap-cat:hover .ap-cat-arrow { color:var(--primary, #2D4A35); }
+#page-approvals-pending .ap-cat-arrow svg { width:16px; height:16px; }
+
+/* === Approvals — accordion section + listing (compact) === */
+#page-approvals-pending .ap-sections { display:flex; flex-direction:column; gap:9px; }
+#page-approvals-pending .ap-sec {
+  background:var(--white, #fff); border:1px solid var(--gray-200, #DDD9D0);
+  border-radius:10px; overflow:hidden;
+}
+[data-dark="true"] #page-approvals-pending .ap-sec { background:#1e2130; border-color:#2d3145; }
+#page-approvals-pending .ap-sec-head {
+  display:flex; align-items:center; gap:10px; padding:9px 12px; cursor:pointer;
+  transition:background 0.15s; user-select:none;
+}
+#page-approvals-pending .ap-sec-head:hover { background:var(--gray-50, #F5F2EC); }
+[data-dark="true"] #page-approvals-pending .ap-sec-head:hover { background:#252836; }
+#page-approvals-pending .ap-sec-ico {
+  width:32px; height:32px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--primary-light, #e6f0e8); color:var(--primary, #2D4A35);
+}
+#page-approvals-pending .ap-sec-ico svg { width:16px; height:16px; }
+#page-approvals-pending .ap-sec-titles { flex:1; min-width:0; }
+#page-approvals-pending .ap-sec-name { font-size:12.5px; font-weight:700; color:var(--gray-900, #1A1714); line-height:1.3; }
+#page-approvals-pending .ap-sec-meta { font-size:10.5px; color:var(--gray-500, #7A7268); margin-top:1px; }
+#page-approvals-pending .ap-sec-meta code {
+  font-family:'Courier New', monospace; font-size:10px; color:var(--primary, #2D4A35);
+  background:var(--primary-light, #e6f0e8); padding:1px 5px; border-radius:4px;
+}
+#page-approvals-pending .ap-sec-count {
+  font-size:10px; font-weight:800; color:#fff; background:var(--cta, #C8837A);
+  min-width:20px; height:20px; padding:0 7px; border-radius:10px;
+  display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+#page-approvals-pending .ap-sec-count.zero { background:var(--gray-200, #DDD9D0); color:var(--gray-500, #7A7268); }
+#page-approvals-pending .ap-sec-chev {
+  color:var(--gray-400, #A09890); flex-shrink:0; transition:transform 0.2s;
+}
+#page-approvals-pending .ap-sec-chev svg { width:16px; height:16px; display:block; }
+#page-approvals-pending .ap-sec.open .ap-sec-chev { transform:rotate(180deg); }
+#page-approvals-pending .ap-sec-body { display:none; border-top:1px solid var(--gray-100, #ECE8E1); }
+[data-dark="true"] #page-approvals-pending .ap-sec-body { border-color:#2d3145; }
+#page-approvals-pending .ap-sec.open .ap-sec-body { display:block; }
+
+/* listing rows */
+#page-approvals-pending .ap-row {
+  display:flex; align-items:center; gap:10px; padding:8px 12px;
+  border-bottom:1px solid var(--gray-100, #ECE8E1);
+}
+[data-dark="true"] #page-approvals-pending .ap-row { border-color:#252836; }
+#page-approvals-pending .ap-row:last-child { border-bottom:none; }
+#page-approvals-pending .ap-row:hover { background:var(--gray-50, #F5F2EC); }
+[data-dark="true"] #page-approvals-pending .ap-row:hover { background:#252836; }
+#page-approvals-pending .ap-row-av {
+  width:28px; height:28px; border-radius:7px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; color:#fff; background:var(--primary, #2D4A35);
+}
+#page-approvals-pending .ap-row-av.alt2 { background:#5a7fa8; }
+#page-approvals-pending .ap-row-av.alt3 { background:var(--cta, #C8837A); }
+#page-approvals-pending .ap-row-av.alt4 { background:#7c5cbf; }
+#page-approvals-pending .ap-row-main { flex:1; min-width:0; }
+#page-approvals-pending .ap-row-title { font-size:12px; font-weight:600; color:var(--gray-900, #1A1714); line-height:1.3; }
+#page-approvals-pending .ap-row-sub { font-size:10.5px; color:var(--gray-500, #7A7268); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#page-approvals-pending .ap-row-amt {
+  font-size:12px; font-weight:800; color:var(--gray-900, #1A1714);
+  font-variant-numeric:tabular-nums; flex-shrink:0; text-align:right;
+}
+#page-approvals-pending .ap-row-amt .age { display:block; font-size:9.5px; font-weight:600; color:var(--gray-400, #A09890); margin-top:1px; }
+#page-approvals-pending .ap-row-actions { display:flex; gap:5px; flex-shrink:0; }
+#page-approvals-pending .ap-act-go {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:11px; font-weight:700; white-space:nowrap;
+  color:var(--primary, #2D4A35); background:var(--primary-light, #e6f0e8);
+  border:1px solid color-mix(in srgb, var(--primary, #2D4A35) 22%, transparent);
+  padding:5px 11px; border-radius:7px; cursor:pointer; transition:all 0.15s;
+}
+#page-approvals-pending .ap-act-go svg { width:13px; height:13px; flex-shrink:0; }
+#page-approvals-pending .ap-act-go:hover { background:var(--primary, #2D4A35); color:#fff; border-color:var(--primary, #2D4A35); }
+[data-dark="true"] #page-approvals-pending .ap-act-go { background:#252836; color:var(--gray-300); border-color:#363b52; }
+#page-approvals-pending .ap-sec-foot {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:8px 12px; background:var(--gray-50, #F5F2EC); font-size:10.5px; color:var(--gray-500, #7A7268);
+}
+[data-dark="true"] #page-approvals-pending .ap-sec-foot { background:#161824; }
+#page-approvals-pending .ap-sec-open {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:10.5px; font-weight:700; color:var(--primary, #2D4A35);
+  background:transparent; border:1px solid var(--gray-200, #DDD9D0);
+  padding:4px 9px; border-radius:6px; cursor:pointer; transition:all 0.15s;
+}
+#page-approvals-pending .ap-sec-open:hover { background:var(--primary, #2D4A35); color:#fff; border-color:var(--primary, #2D4A35); }
+#page-approvals-pending .ap-sec-open svg { width:12px; height:12px; }
+#page-approvals-pending .ap-empty { padding:14px 12px; text-align:center; font-size:11px; color:var(--gray-400, #A09890); }
+
+/* === Heatmap === */
+.v10-heat-grid {
+  display:grid;
+  grid-template-columns:repeat(14, 1fr);
+  gap:2px;
+  margin-top:4px;
+}
+.v10-heat-cell {
+  aspect-ratio:1;
+  border-radius:2px;
+  background:#f1f5f4;
+}
+.v10-heat-cell.h1 { background:#bbf7d0; }
+.v10-heat-cell.h2 { background:#86efac; }
+.v10-heat-cell.h3 { background:#4ade80; }
+.v10-heat-cell.h4 { background:#22c55e; }
+.v10-heat-cell.h5 { background:#16a34a; }
+
+/* === Map Pin Strip (used for site headcount) === */
+.v10-pins {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  margin-top:4px;
+}
+.v10-pin {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+}
+.v10-pin .dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.v10-pin .dot.g { background:#10b981; }
+.v10-pin .dot.y { background:#facc15; }
+.v10-pin .dot.r { background:#ef4444; }
+.v10-pin .name { flex:1; color:var(--text); font-weight:600; }
+.v10-pin .cnt { font-weight:800; color:var(--text); font-variant-numeric:tabular-nums; }
+
+/* === Twin Bar Chart === */
+.v10-twin-bars {
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  height:80px;
+  margin-top:4px;
+}
+.v10-twin-month {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+}
+.v10-twin-bars-pair {
+  display:flex;
+  gap:2px;
+  height:60px;
+  align-items:flex-end;
+}
+.v10-twin-bar {
+  width:9px;
+  border-radius:2px 2px 0 0;
+}
+.v10-twin-bar.in  { background:#10b981; }
+.v10-twin-bar.out { background:#f59e0b; }
+.v10-twin-label {
+  font-size:9px;
+  color:var(--muted);
+  font-weight:600;
+}
+.v10-twin-legend {
+  display:flex;
+  gap:10px;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.v10-twin-legend span {
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+}
+.v10-twin-legend .sw {
+  width:8px;
+  height:8px;
+  border-radius:2px;
+}
+
+/* === Health Heatmap Tile === */
+.v10-health-grid {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:4px;
+  margin-top:4px;
+}
+.v10-health-tile {
+  padding:8px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  text-align:center;
+  line-height:1.2;
+}
+.v10-health-tile.green  { background:#10b981; }
+.v10-health-tile.amber  { background:#f59e0b; }
+.v10-health-tile.red    { background:#ef4444; }
+.v10-health-tile.gray   { background:#9ca3af; }
+
+/* === Widget Filter Dropdown (compact, design-system) === */
+.v10-wfilter {
+  appearance:none;
+  -webkit-appearance:none;
+  font-family:inherit;
+  font-size:10.5px;
+  font-weight:600;
+  color:var(--gray-700, #3E3A35);
+  background:var(--gray-50, #F5F2EC);
+  border:1px solid var(--gray-200, #DDD9D0);
+  border-radius:7px;
+  padding:4px 22px 4px 9px;
+  cursor:pointer;
+  line-height:1.2;
+  transition:all 0.15s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237A7268' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 7px center;
+  background-size:9px;
+  max-width:130px;
+}
+.v10-wfilter:hover {
+  border-color:var(--primary, #2D4A35);
+  color:var(--primary, #2D4A35);
+}
+.v10-wfilter:focus {
+  outline:none;
+  border-color:var(--primary, #2D4A35);
+  box-shadow:0 0 0 2px var(--primary-light, #e6f0e8);
+}
+[data-dark="true"] .v10-wfilter {
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(255,255,255,0.12);
+  color:var(--gray-700);
+}
+/* Filter row sits under header for widgets that need >1 control */
+.v10-wfilter-row {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+/* Canvas wrapper so Chart.js can size to the widget */
+.v10-canvas-wrap {
+  position:relative;
+  flex:1;
+  min-height:120px;
+  width:100%;
+  margin-top:2px;
+}
+.v10-canvas-wrap.tall { min-height:140px; }
+.v10-canvas-wrap canvas { position:absolute; inset:0; }
+/* Mini KPI strip used under some charts */
+.v10-chart-kpis {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  font-size:11px;
+  color:var(--muted, #6b7280);
+}
+.v10-chart-kpis b { color:var(--text, #1a1a1a); font-weight:800; }
+/* Health summary chips for Portfolio Health */
+.v10-rag-summary {
+  display:flex;
+  gap:6px;
+  margin-top:2px;
+}
+.v10-rag-chip {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1px;
+  padding:6px 4px;
+  border-radius:7px;
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+}
+.v10-rag-chip .n { font-size:18px; font-weight:800; line-height:1; }
+.v10-rag-chip.g { background:rgba(16,185,129,0.12); color:#0f7a55; }
+.v10-rag-chip.a { background:rgba(245,158,11,0.14); color:#a96a08; }
+.v10-rag-chip.r { background:rgba(239,68,68,0.12); color:#c2403a; }
+.v10-rag-chip.x { background:rgba(156,163,175,0.16); color:#6b7280; }
+[data-dark="true"] .v10-rag-chip.g { color:#34d399; }
+[data-dark="true"] .v10-rag-chip.a { color:#fbbf24; }
+[data-dark="true"] .v10-rag-chip.r { color:#f87171; }
+/* Leave heat: month label + nav */
+.v10-heat-head {
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:11px; color:var(--muted, #6b7280); font-weight:600;
+}
+.v10-heat-dow {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:3px;
+  font-size:8px; color:var(--muted, #6b7280); text-align:center;
+  margin-top:4px; font-weight:700;
+}
+.v10-heat-month-grid {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-top:3px;
+}
+.v10-heat-month-grid .v10-heat-cell { aspect-ratio:1; border-radius:3px; }
+.v10-heat-month-grid .v10-heat-cell.empty { background:transparent; }
+
+/* === Customize Mode (Stage C — placeholder visible toggle) === */
+.v10-widget.customize-mode {
+  border-style:dashed;
+  cursor:move;
+}
+.v10-widget-controls {
+  display:none;
+  position:absolute;
+  top:6px;
+  right:6px;
+  gap:4px;
+}
+.v10-widget.customize-mode .v10-widget-controls {
+  display:flex;
+}
+.v10-widget-ctrl {
+  width:22px;
+  height:22px;
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:1px solid var(--border);
+  cursor:pointer;
+  font-size:11px;
+}
+.v10-widget-ctrl:hover { background:#f1f5f4; }
+.v10-widget-ctrl.close:hover { background:#fee2e2; color:#991b1b; }
+
+/* === DSO/DPO Meter Variant === */
+.v10-meter-pair {
+  display:flex;
+  justify-content:space-around;
+  gap:10px;
+  flex:1;
+  align-items:center;
+}
+.v10-meter {
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+}
+.v10-meter .ring {
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  background:conic-gradient(#10b981 var(--p, 70%), #f1f5f4 0);
+  position:relative;
+  isolation:isolate;
+}
+.v10-meter .ring::before {
+  content:"";
+  position:absolute;
+  inset:5px;
+  background:#fff;
+  border-radius:50%;
+  z-index:0;
+}
+.v10-meter .ring span {
+  position:relative;
+  color:var(--text, #1a1a1a);
+  z-index:1;
+  font-size:15px;
+  font-weight:800;
+}
+.v10-meter .lbl {
+  font-size:10px;
+  font-weight:700;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+/* === Sync Health Pills === */
+.v10-sync-pills {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.v10-sync-pill {
+  flex:1;
+  min-width:60px;
+  padding:6px 8px;
+  border-radius:6px;
+  text-align:center;
+  font-size:11px;
+}
+.v10-sync-pill .n {
+  font-size:18px;
+  font-weight:800;
+  display:block;
+}
+.v10-sync-pill.g { background:#dcfce7; color:#065f46; }
+.v10-sync-pill.a { background:#fef3c7; color:#92400e; }
+.v10-sync-pill.r { background:#fee2e2; color:#991b1b; }
+.v10-sync-last {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:6px;
+  text-align:right;
+}
+
+/* === Page header for v10 dashboard === */
+.v10-page-greet {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.v10-greet-name {
+  font-family: 'Fraunces', serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--text);
+  letter-spacing:-0.02em;
+}
+.v10-greet-sub {
+  font-size:13px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.v10-date {
+  font-size:12px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+
+
+</style>
 </head>
 <body>
     <!-- ══════════════════════════════════════════
@@ -15788,443 +17008,992 @@
                 <!-- ═══ PLACEHOLDER PAGES ═══ -->
                 <!-- Each page will be injected here as you share files -->
 
-                <div id="page-dashboard" class="page-section active">
-                    <div class="dash-scroll">
+<div id="page-dashboard" class="page-section active">
+  <div class="dash-scroll" style="padding:18px;">
 
-                        <!-- Greeting Hero -->
-                        <div class="dash-hero">
-                            <div>
-                                <div class="dash-greet-name">Good morning, Andrew</div>
-                                <div class="dash-greet-sub">Here's what's happening across your workforce today</div>
-                            </div>
-                            <div class="dash-date-pill">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <span id="dashTodayDate">Wednesday, May 6, 2026</span>
-                            </div>
-                        </div>
+    <!-- Greeting -->
+    <div class="v10-page-greet">
+      <div>
+        <div class="v10-greet-name">Good morning, Andrew</div>
+        <div class="v10-greet-sub">Here's what's happening across your workforce today</div>
+      </div>
+      <div class="v10-date" id="v10TodayDate">Thursday, May 14, 2026</div>
+    </div>
 
-                        <div class="dash-grid">
+    <!-- Role Tab Switcher -->
+    <div class="v10-role-bar">
+      <span class="v10-role-bar-label">View as</span>
+      <button class="v10-role-tab active" data-role="exec" onclick="v10SwitchRole('exec')">
+        <span class="role-code">A1</span> Executive
+      </button>
+      <button class="v10-role-tab" data-role="pm" onclick="v10SwitchRole('pm')">
+        <span class="role-code">A2</span> Project Manager
+      </button>
+      <button class="v10-role-tab" data-role="fin" onclick="v10SwitchRole('fin')">
+        <span class="role-code">A3</span> Finance
+      </button>
+      <button class="v10-role-tab" data-role="ops" onclick="v10SwitchRole('ops')">
+        <span class="role-code">A4</span> Operations
+      </button>
+      <button class="v10-role-tab" data-role="vm" onclick="v10SwitchRole('vm')">
+        <span class="role-code">A5</span> Vendor Mgr
+      </button>
+      <div class="v10-role-bar-actions">
+        <button class="v10-action-btn" onclick="v10ToggleCustomize()" id="v10CustomizeBtn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Customize
+        </button>
+        <button class="v10-action-btn" onclick="showPage('reports','Reports Hub')">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          All Reports
+        </button>
+      </div>
+    </div>
 
-                            <!-- ============ MAIN COLUMN ============ -->
-                            <div class="dash-main">
+    <!-- ═══════════ CRITICAL ALERTS — pinned top banner ═══════════ -->
+    <div class="v10-crit" id="v10CritAlerts">
+      <div class="v10-crit-head">
+        <div class="v10-crit-heading">
+          <div class="v10-crit-title">Critical Alerts</div>
+          <div class="v10-crit-subtitle">Items needing attention</div>
+        </div>
+        <span class="v10-crit-count">4 active</span>
+      </div>
+      <div class="v10-crit-grid">
 
-                                <!-- Hero KPI Row -->
-                                <div class="dash-kpi-row">
-                                    <div class="dash-kpi" onclick="showPage('attendance','Attendance Records')">
-                                        <div class="dash-kpi-top">
-                                            <div class="dash-kpi-icon green">
-                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                            </div>
-                                            <span class="dash-kpi-delta pos">↑ 4.2%</span>
-                                        </div>
-                                        <div class="dash-kpi-label">Attendance Today</div>
-                                        <div class="dash-kpi-value">88.3%</div>
-                                        <div class="dash-kpi-sub">410 of 464 present</div>
-                                    </div>
+        <button class="v10-crit-card amber" onclick="showPage('attendance','Attendance')">
+          <span class="v10-crit-text">9 Attendance NA</span>
+          <span class="v10-crit-tag">Today</span>
+        </button>
 
-                                    <div class="dash-kpi" onclick="showPage('users','Users')">
-                                        <div class="dash-kpi-top">
-                                            <div class="dash-kpi-icon blue">
-                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                            </div>
-                                            <span class="dash-kpi-delta neutral">12 sites</span>
-                                        </div>
-                                        <div class="dash-kpi-label">Active Workforce</div>
-                                        <div class="dash-kpi-value">410</div>
-                                        <div class="dash-kpi-sub">38 on duty · 16 on leave</div>
-                                    </div>
+        <button class="v10-crit-card red" onclick="showPage('plan-vs-actual','Plan vs Actual')">
+          <span class="v10-crit-text">3 projects: cost &gt; work done</span>
+          <span class="v10-crit-tag">Overrun risk</span>
+        </button>
 
-                                    <div class="dash-kpi" onclick="showPage('po-approvals','Approval Queue')">
-                                        <div class="dash-kpi-top">
-                                            <div class="dash-kpi-icon amber">
-                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                            </div>
-                                            <span class="dash-kpi-delta neg">3 urgent</span>
-                                        </div>
-                                        <div class="dash-kpi-label">Pending Approvals</div>
-                                        <div class="dash-kpi-value">14</div>
-                                        <div class="dash-kpi-sub">$6K total value</div>
-                                    </div>
+        <button class="v10-crit-card amber" onclick="showPage('wcc','Work Completion Certificate')">
+          <span class="v10-crit-text">6 WCCs aging &gt;15 days</span>
+          <span class="v10-crit-tag">L1/L2 stuck</span>
+        </button>
 
-                                    <div class="dash-kpi" onclick="showPage('plan-actual','Resource Analytics')">
-                                        <div class="dash-kpi-top">
-                                            <div class="dash-kpi-icon cta">
-                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2"/></svg>
-                                            </div>
-                                            <span class="dash-kpi-delta pos">On track</span>
-                                        </div>
-                                        <div class="dash-kpi-label">Project Progress</div>
-                                        <div class="dash-kpi-value">73%</div>
-                                        <div class="dash-kpi-sub">Avg across 8 projects</div>
-                                    </div>
-                                </div>
+        <button class="v10-crit-card red" onclick="showPage('expense-summary','Expense Summary')">
+          <span class="v10-crit-text">5 expense claims aging &gt;15d</span>
+          <span class="v10-crit-tag">₹1.8L</span>
+        </button>
 
-                                <!-- Today's Snapshot -->
-                                <div class="dash-card">
-                                    <div class="dash-card-head">
-                                        <div>
-                                            <div class="dash-card-title">Today's Snapshot</div>
-                                            <div class="dash-card-sub">Live workforce activity · updated 2 min ago</div>
-                                        </div>
-                                        <a href="#" class="dash-card-link" onclick="showPage('attendance','Attendance Records');return false;">View all →</a>
-                                    </div>
-                                    <div class="dash-snap-grid">
-                                        <div class="dash-snap">
-                                            <div class="dash-snap-label">Checked In</div>
-                                            <div class="dash-snap-value">410</div>
-                                            <div class="dash-snap-meta">↑ 17 vs yesterday</div>
-                                        </div>
-                                        <div class="dash-snap">
-                                            <div class="dash-snap-label">Out on Duty</div>
-                                            <div class="dash-snap-value">38</div>
-                                            <div class="dash-snap-meta">across 9 sites</div>
-                                        </div>
-                                        <div class="dash-snap">
-                                            <div class="dash-snap-label">On Leave</div>
-                                            <div class="dash-snap-value">16</div>
-                                            <div class="dash-snap-meta">3 unapproved</div>
-                                        </div>
-                                        <div class="dash-snap">
-                                            <div class="dash-snap-label">Late Arrivals</div>
-                                            <div class="dash-snap-value">23</div>
-                                            <div class="dash-snap-meta">5.6% of present</div>
-                                        </div>
-                                    </div>
-                                </div>
+      </div>
+    </div>
 
-                                <!-- Two-col: Site Attendance + Pending Actions -->
-                                <div class="dash-row-2">
-                                    <div class="dash-card">
-                                        <div class="dash-card-head">
-                                            <div>
-                                                <div class="dash-card-title">Site Attendance</div>
-                                                <div class="dash-card-sub">Today's check-in rate by site</div>
-                                            </div>
-                                            <a href="#" class="dash-card-link" onclick="showPage('site','Sites');return false;">All sites →</a>
-                                        </div>
-                                        <div class="dash-site-list">
-                                            <div class="dash-site-row">
-                                                <div class="dash-site-name">Site Alpha</div>
-                                                <div class="dash-site-bar"><div class="dash-site-bar-fill" style="width:96%"></div></div>
-                                                <div class="dash-site-pct">96%</div>
-                                            </div>
-                                            <div class="dash-site-row">
-                                                <div class="dash-site-name">Site Gamma</div>
-                                                <div class="dash-site-bar"><div class="dash-site-bar-fill" style="width:93%"></div></div>
-                                                <div class="dash-site-pct">93%</div>
-                                            </div>
-                                            <div class="dash-site-row">
-                                                <div class="dash-site-name">Site Delta</div>
-                                                <div class="dash-site-bar"><div class="dash-site-bar-fill" style="width:89%"></div></div>
-                                                <div class="dash-site-pct">89%</div>
-                                            </div>
-                                            <div class="dash-site-row">
-                                                <div class="dash-site-name">Site Epsilon</div>
-                                                <div class="dash-site-bar"><div class="dash-site-bar-fill warn" style="width:81%"></div></div>
-                                                <div class="dash-site-pct">81%</div>
-                                            </div>
-                                            <div class="dash-site-row">
-                                                <div class="dash-site-name">Site Beta</div>
-                                                <div class="dash-site-bar"><div class="dash-site-bar-fill danger" style="width:74%"></div></div>
-                                                <div class="dash-site-pct">74%</div>
-                                            </div>
-                                        </div>
-                                    </div>
+    <!-- WIDGET GRID — visibility controlled by JS per role -->
+    <div class="v10-dash-grid" id="v10DashGrid">
 
-                                    <div class="dash-card">
-                                        <div class="dash-card-head">
-                                            <div>
-                                                <div class="dash-card-title">Needs Your Attention</div>
-                                                <div class="dash-card-sub">Items waiting for action</div>
-                                            </div>
-                                        </div>
-                                        <div class="dash-action-list">
-                                            <div class="dash-action-item" onclick="showPage('po-approvals','Approval Queue')">
-                                                <div class="dash-action-icon amber">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                                </div>
-                                                <div class="dash-action-body">
-                                                    <div class="dash-action-title">PO Approvals Pending</div>
-                                                    <div class="dash-action-sub">3 high-priority · 11 standard</div>
-                                                </div>
-                                                <div class="dash-action-count">14</div>
-                                            </div>
-                                            <div class="dash-action-item" onclick="showPage('reimbursements','Expense Records')">
-                                                <div class="dash-action-icon danger">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                                </div>
-                                                <div class="dash-action-body">
-                                                    <div class="dash-action-title">Reimbursements Aging &gt; 7d</div>
-                                                    <div class="dash-action-sub">$850 across 4 employees</div>
-                                                </div>
-                                                <div class="dash-action-count">12</div>
-                                            </div>
-                                            <div class="dash-action-item" onclick="showPage('invoice-tracking','Invoice Tracker')">
-                                                <div class="dash-action-icon blue">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                                </div>
-                                                <div class="dash-action-body">
-                                                    <div class="dash-action-title">Invoices Overdue</div>
-                                                    <div class="dash-action-sub">$3K receivable from 5 clients</div>
-                                                </div>
-                                                <div class="dash-action-count">7</div>
-                                            </div>
-                                            <div class="dash-action-item" onclick="showPage('wcc','WCC')">
-                                                <div class="dash-action-icon green">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                                </div>
-                                                <div class="dash-action-body">
-                                                    <div class="dash-action-title">WCC Awaiting Sign-off</div>
-                                                    <div class="dash-action-sub">2 ready for client approval</div>
-                                                </div>
-                                                <div class="dash-action-count">5</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Financial Pulse -->
-                                <div class="dash-card">
-                                    <div class="dash-card-head">
-                                        <div>
-                                            <div class="dash-card-title">Financial Pulse</div>
-                                            <div class="dash-card-sub">This month — May 2026</div>
-                                        </div>
-                                        <a href="#" class="dash-card-link" onclick="showPage('budgeting','Budgeting');return false;">Budget detail →</a>
-                                    </div>
-                                    <div class="dash-fin-grid">
-                                        <div class="dash-fin-tile">
-                                            <div class="dash-fin-label">PO Value Issued</div>
-                                            <div class="dash-fin-value">$48K</div>
-                                            <div class="dash-fin-progress"><div class="dash-fin-progress-fill" style="width:64%"></div></div>
-                                            <div class="dash-fin-meta">64% of monthly budget · 27 POs</div>
-                                        </div>
-                                        <div class="dash-fin-tile">
-                                            <div class="dash-fin-label">Vendor Bills Due</div>
-                                            <div class="dash-fin-value">$16K</div>
-                                            <div class="dash-fin-progress"><div class="dash-fin-progress-fill" style="width:42%;background:var(--warning);"></div></div>
-                                            <div class="dash-fin-meta">9 bills · 3 due this week</div>
-                                        </div>
-                                        <div class="dash-fin-tile">
-                                            <div class="dash-fin-label">Reimbursements Paid</div>
-                                            <div class="dash-fin-value">$3K</div>
-                                            <div class="dash-fin-progress"><div class="dash-fin-progress-fill" style="width:78%;background:var(--success);"></div></div>
-                                            <div class="dash-fin-meta">87 of 112 settled · 78%</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Two-col: Top Performers + Recent Activity -->
-                                <div class="dash-row-2">
-                                    <div class="dash-card">
-                                        <div class="dash-card-head">
-                                            <div>
-                                                <div class="dash-card-title">Top Performers</div>
-                                                <div class="dash-card-sub">This week · attendance &amp; tasks</div>
-                                            </div>
-                                            <a href="#" class="dash-card-link" onclick="showPage('users','Users');return false;">All users →</a>
-                                        </div>
-                                        <div class="dash-perf-list">
-                                            <div class="dash-perf-row">
-                                                <div class="dash-perf-rank">1</div>
-                                                <div class="dash-perf-avatar">TK</div>
-                                                <div class="dash-perf-info">
-                                                    <div class="dash-perf-name">Tyler Kane</div>
-                                                    <div class="dash-perf-meta">Dallas-NB-005 · Field Lead</div>
-                                                </div>
-                                                <div class="dash-perf-stat">98%</div>
-                                            </div>
-                                            <div class="dash-perf-row">
-                                                <div class="dash-perf-rank">2</div>
-                                                <div class="dash-perf-avatar">PS</div>
-                                                <div class="dash-perf-info">
-                                                    <div class="dash-perf-name">Patricia Sherman</div>
-                                                    <div class="dash-perf-meta">Plano-Tower-12 · RF Engineer</div>
-                                                </div>
-                                                <div class="dash-perf-stat">96%</div>
-                                            </div>
-                                            <div class="dash-perf-row">
-                                                <div class="dash-perf-rank">3</div>
-                                                <div class="dash-perf-avatar">MA</div>
-                                                <div class="dash-perf-info">
-                                                    <div class="dash-perf-name">Michael Anderson</div>
-                                                    <div class="dash-perf-meta">Houston-Hub-03 · Project Manager</div>
-                                                </div>
-                                                <div class="dash-perf-stat">94%</div>
-                                            </div>
-                                            <div class="dash-perf-row">
-                                                <div class="dash-perf-rank">4</div>
-                                                <div class="dash-perf-avatar">JM</div>
-                                                <div class="dash-perf-info">
-                                                    <div class="dash-perf-name">Jessica Martinez</div>
-                                                    <div class="dash-perf-meta">Dallas-NB-005 · Network Tech</div>
-                                                </div>
-                                                <div class="dash-perf-stat">92%</div>
-                                            </div>
-                                            <div class="dash-perf-row">
-                                                <div class="dash-perf-rank">5</div>
-                                                <div class="dash-perf-avatar">DT</div>
-                                                <div class="dash-perf-info">
-                                                    <div class="dash-perf-name">David Thompson</div>
-                                                    <div class="dash-perf-meta">Austin-Site-21 · Field Supervisor</div>
-                                                </div>
-                                                <div class="dash-perf-stat">91%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="dash-card">
-                                        <div class="dash-card-head">
-                                            <div>
-                                                <div class="dash-card-title">Recent Activity</div>
-                                                <div class="dash-card-sub">Across all modules</div>
-                                            </div>
-                                        </div>
-                                        <div class="dash-feed">
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot success"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text"><strong>PO-2026-0142</strong> approved by Andrew Miller · $185K for 5G small-cell deployment</div>
-                                                    <div class="dash-feed-time">8 min ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot cta"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text">New task assigned to <strong>Tyler Kane</strong> at Dallas-NB-005 — Fiber pull, 4 activities</div>
-                                                    <div class="dash-feed-time">22 min ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text"><strong>WCC-0089</strong> generated for Plano-Tower-12 · ready for Verizon</div>
-                                                    <div class="dash-feed-time">1 hr ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot warning"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text">Vendor bill from <strong>Sherman Infrastructure LLC</strong> · $4K · due in 3 days</div>
-                                                    <div class="dash-feed-time">2 hr ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot success"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text">DPR submitted for <strong>Houston-Hub-03</strong> · 34 of 38 activities completed</div>
-                                                    <div class="dash-feed-time">3 hr ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="dash-feed-item">
-                                                <div class="dash-feed-dot danger"></div>
-                                                <div class="dash-feed-body">
-                                                    <div class="dash-feed-text">Inventory low: <strong>fiber patch cords</strong> at Austin-Site-21 — 18 units left</div>
-                                                    <div class="dash-feed-time">5 hr ago</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- ============ /MAIN COLUMN ============ -->
+      <!-- ═══════════════ SECTION B — FINANCIAL HEALTH ═══════════════ -->
 
 
-                            <!-- ============ ONAQT INTELLIGENCE PANEL ============ -->
-                            <aside class="dash-side">
-                                <div class="ai-panel">
-                                    <div class="ai-hero">
-                                        <div class="ai-status-pill">
-                                            <span class="ai-status-dot"></span>
-                                            AI ACTIVE
-                                        </div>
-                                        <svg class="ai-spark" fill="none" stroke="rgba(255,255,255,0.85)" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3zM18 14l.75 2.25L21 17l-2.25.75L18 20l-.75-2.25L15 17l2.25-.75L18 14z"/>
-                                        </svg>
-                                        <div class="ai-hero-title">Onaqt Intelligence</div>
-                                        <div class="ai-hero-sub">Ask anything about your workforce</div>
-                                    </div>
+      <!-- W1: Work Done (Planned vs Actual) -->
+      <div class="v10-widget span-6" data-widget="W1" data-roles="exec,pm,ops,fin">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Work Done (Planned vs Actual)</div>
+            <div class="v10-widget-sub" id="wdSub">Last 30 days · Planned vs Actual</div>
+          </div>
+          <select class="v10-wfilter" id="wdFilter" onchange="w1Render(this.value)" title="Period">
+            <option value="30d">Last 30 Days</option>
+            <option value="7d">Last 7 Days</option>
+            <option value="thisMonth">This Month</option>
+            <option value="lastMonth">Last Month</option>
+            <option value="quarter">This Quarter</option>
+            <option value="year">This Year</option>
+          </select>
+        </div>
+        <div class="v10-chart-wrap" style="min-height:120px;">
+          <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+            <line x1="0" y1="30"  x2="400" y2="30"  stroke="#f1f5f4" stroke-width="1"/>
+            <line x1="0" y1="60"  x2="400" y2="60"  stroke="#f1f5f4" stroke-width="1"/>
+            <line x1="0" y1="90"  x2="400" y2="90"  stroke="#f1f5f4" stroke-width="1"/>
+            <!-- planned (dashed) -->
+            <polyline id="wdPlanned" points="0,112 50,100 100,86 150,70 200,54 250,40 300,28 350,20 400,14" fill="none" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4,3"/>
+            <!-- actual -->
+            <polyline id="wdActual" points="0,112 50,102 100,90 150,76 200,64 250,55 300,49" fill="none" stroke="#0F5132" stroke-width="2.5"/>
+            <circle id="wdDot" cx="300" cy="49" r="4" fill="#0F5132"/>
+          </svg>
+        </div>
+        <div class="v10-twin-legend">
+          <span><span class="sw" style="background:#9ca3af;"></span>Planned</span>
+          <span><span class="sw" style="background:#0F5132;"></span>Actual</span>
+          <span id="wdSummary" style="margin-left:auto;color:var(--text);font-weight:700;">88% of plan · 1,420 / 1,610 units</span>
+        </div>
+      </div>
 
-                                    <div class="ai-body">
-                                        <div class="ai-section-label">Today's Insights</div>
+      <!-- W2: Pending WCC Ageing -->
+      <div class="v10-widget span-4" data-widget="W2" data-roles="exec,pm,fin,ops">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Pending WCC Ageing</div>
+            <div class="v10-widget-sub">Work completion certs awaiting sign-off</div>
+          </div>
+          <span class="v10-widget-badge work">W2</span>
+        </div>
+        <div class="v10-big-number" style="font-size:24px;">38<span style="font-size:16px;color:var(--muted);"> WCCs</span></div>
+        <div class="v10-bucket-row">
+          <div class="v10-bucket v10-bucket-0" title="0-3 days">14</div>
+          <div class="v10-bucket v10-bucket-1" title="4-7 days">11</div>
+          <div class="v10-bucket v10-bucket-2" title="8-14 days">7</div>
+          <div class="v10-bucket v10-bucket-3" title="15-30 days">4</div>
+          <div class="v10-bucket v10-bucket-4" title="30+ days">2</div>
+        </div>
+        <div class="v10-bucket-labels">
+          <span>0-3d</span><span>4-7d</span><span>8-14d</span><span>15-30d</span><span>30+d</span>
+        </div>
+      </div>
 
-                                        <div class="ai-insight">
-                                            <div class="ai-insight-head">
-                                                <div class="ai-insight-icon danger">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                                                </div>
-                                                <div class="ai-insight-titlewrap">
-                                                    <div class="ai-insight-title">Late Arrival Spike Detected</div>
-                                                    <div class="ai-insight-time">Just now</div>
-                                                </div>
-                                            </div>
-                                            <div class="ai-insight-text">Plano-Tower-12 crew has 23% late arrivals this week — up from 8% last week. Possible traffic route issue on US-75 corridor.</div>
-                                        </div>
+      <!-- B2: AP Aging Buckets -->
+      <div class="v10-widget span-4" data-widget="B2" data-roles="exec,pm,fin,vm">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">AP Aging Buckets</div>
+            <div class="v10-widget-sub">Outstanding payables by age</div>
+          </div>
+          <span class="v10-widget-badge fin">B2</span>
+        </div>
+        <div class="v10-big-number" style="font-size:24px;"><span class="currency">₹</span>72.4<span style="font-size:16px;color:var(--muted);">L</span></div>
+        <div class="v10-bucket-row">
+          <div class="v10-bucket v10-bucket-0" title="Current">28L</div>
+          <div class="v10-bucket v10-bucket-1" title="1-30">22L</div>
+          <div class="v10-bucket v10-bucket-2" title="31-60">12L</div>
+          <div class="v10-bucket v10-bucket-3" title="61-90">7L</div>
+          <div class="v10-bucket v10-bucket-4" title="90+">3L</div>
+        </div>
+        <div class="v10-bucket-labels">
+          <span>Current</span><span>1-30</span><span>31-60</span><span>61-90</span><span>90+</span>
+        </div>
+      </div>
 
-                                        <div class="ai-insight">
-                                            <div class="ai-insight-head">
-                                                <div class="ai-insight-icon success">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                                                </div>
-                                                <div class="ai-insight-titlewrap">
-                                                    <div class="ai-insight-title">Attendance Up 4% This Week</div>
-                                                    <div class="ai-insight-time">2 hrs ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="ai-insight-text">Overall attendance improved to 88.3%. Texas and Georgia regions are performing above target.</div>
-                                        </div>
+      <!-- B3: AR Aging Buckets -->
+      <div class="v10-widget span-4" data-widget="B3" data-roles="exec,fin">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">AR Aging Buckets</div>
+            <div class="v10-widget-sub">Customer invoices outstanding</div>
+          </div>
+          <span class="v10-widget-badge fin">B3</span>
+        </div>
+        <div class="v10-big-number" style="font-size:24px;"><span class="currency">₹</span>1.18<span style="font-size:16px;color:var(--muted);">Cr</span></div>
+        <div class="v10-bucket-row">
+          <div class="v10-bucket v10-bucket-0">52L</div>
+          <div class="v10-bucket v10-bucket-1">38L</div>
+          <div class="v10-bucket v10-bucket-2">18L</div>
+          <div class="v10-bucket v10-bucket-3">7L</div>
+          <div class="v10-bucket v10-bucket-4">3L</div>
+        </div>
+        <div class="v10-bucket-labels">
+          <span>Current</span><span>1-30</span><span>31-60</span><span>61-90</span><span>90+</span>
+        </div>
+      </div>
 
-                                        <div class="ai-insight">
-                                            <div class="ai-insight-head">
-                                                <div class="ai-insight-icon warning">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                                                </div>
-                                                <div class="ai-insight-titlewrap">
-                                                    <div class="ai-insight-title">12 Reimbursements Aging</div>
-                                                    <div class="ai-insight-time">5 hrs ago</div>
-                                                </div>
-                                            </div>
-                                            <div class="ai-insight-text">$850 in reimbursements have been pending over 7 days. 4 employees are high-risk for dissatisfaction.</div>
-                                        </div>
 
-                                        <div class="ai-insight">
-                                            <div class="ai-insight-head">
-                                                <div class="ai-insight-icon info">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-                                                </div>
-                                                <div class="ai-insight-titlewrap">
-                                                    <div class="ai-insight-title">Verizon Rollout 73% Complete</div>
-                                                    <div class="ai-insight-time">Yesterday</div>
-                                                </div>
-                                            </div>
-                                            <div class="ai-insight-text">On track for May 28 delivery. 3 tasks pending assignment. Recommend assigning Tyler Kane based on skill match.</div>
-                                        </div>
-                                    </div>
 
-                                    <div class="ai-suggest-wrap">
-                                        <div class="ai-suggest-row">
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Who was absent today?')">Who was absent today?</div>
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Reimbursement summary')">Reimbursement summary</div>
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Top performing sites')">Top performing sites</div>
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Pending approvals')">Pending approvals</div>
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Late arrivals this week')">Late arrivals this week</div>
-                                            <div class="ai-chip" onclick="onaqtAiAsk('Vendor bill aging')">Vendor bill aging</div>
-                                        </div>
-                                        <div class="ai-input-row">
-                                            <input class="ai-input" id="onaqtAiInput" placeholder="Ask Onaqt anything…" onkeydown="if(event.key==='Enter'){onaqtAiSubmit();}" />
-                                            <button class="ai-send-btn" onclick="onaqtAiSubmit()" aria-label="Send">
-                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M13 5l7 7-7 7"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
-                            <!-- ============ /ONAQT INTELLIGENCE PANEL ============ -->
+      <!-- B6: Income vs Expense -->
+      <div class="v10-widget span-4" data-widget="B6" data-roles="exec,fin">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Income vs Expense</div>
+            <div class="v10-widget-sub" id="ieSub">Last 6 months · ₹ Cr</div>
+          </div>
+          <select class="v10-wfilter" id="ieFilter" onchange="ieRender(this.value)" title="Period">
+            <option value="6m">Last 6 Months</option>
+            <option value="thisMonth">This Month</option>
+            <option value="lastMonth">Last Month</option>
+            <option value="quarter">This Quarter</option>
+            <option value="half">Half Year</option>
+            <option value="year">This Year</option>
+          </select>
+        </div>
+        <div class="v10-canvas-wrap"><canvas id="ieChart"></canvas></div>
+        <div class="v10-chart-kpis">
+          <span>Income <b id="ieKpiIn">₹3.06Cr</b></span>
+          <span>Expense <b id="ieKpiOut">₹2.45Cr</b></span>
+          <span>Net <b id="ieKpiNet">₹0.61Cr</b></span>
+        </div>
+      </div>
 
-                        </div>
-                    </div>
-                </div>
+
+
+      <!-- ═══════════════ SECTION C — PROJECT EXECUTION ═══════════════ -->
+
+      <!-- C1: Portfolio Health Heatmap -->
+      <div class="v10-widget span-4" data-widget="C1" data-roles="exec,pm,fin">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Portfolio Health</div>
+            <div class="v10-widget-sub" id="phSub">This month · R/A/G status</div>
+          </div>
+          <select class="v10-wfilter" id="phFilter" onchange="phRender(this.value)" title="Period">
+            <option value="month">This Month</option>
+            <option value="quarter">This Quarter</option>
+            <option value="half">Half Year</option>
+            <option value="year">This Year</option>
+          </select>
+        </div>
+        <div class="v10-canvas-wrap" style="min-height:108px;"><canvas id="phChart"></canvas></div>
+        <div class="v10-rag-summary" id="phSummary">
+          <div class="v10-rag-chip g"><span class="n">7</span>On Track</div>
+          <div class="v10-rag-chip a"><span class="n">3</span>At Risk</div>
+          <div class="v10-rag-chip r"><span class="n">2</span>Critical</div>
+          <div class="v10-rag-chip x"><span class="n">1</span>Hold</div>
+        </div>
+      </div>
+
+      <!-- C2: CPI/SPI Gauges -->
+      <div class="v10-widget span-4" data-widget="C2" data-roles="exec,pm,fin">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">CPI / SPI</div>
+            <div class="v10-widget-sub">Active portfolio average</div>
+          </div>
+          <span class="v10-widget-badge proj">C2</span>
+        </div>
+        <div class="v10-gauges">
+          <div class="v10-gauge">
+            <svg viewBox="0 0 100 60">
+              <path d="M 10 55 A 40 40 0 0 1 90 55" fill="none" stroke="#f1f5f4" stroke-width="10" stroke-linecap="round"/>
+              <path d="M 10 55 A 40 40 0 0 1 75 22" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round"/>
+              <text x="50" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#1a1a1a">0.94</text>
+            </svg>
+            <div class="v10-gauge-label">CPI</div>
+          </div>
+          <div class="v10-gauge">
+            <svg viewBox="0 0 100 60">
+              <path d="M 10 55 A 40 40 0 0 1 90 55" fill="none" stroke="#f1f5f4" stroke-width="10" stroke-linecap="round"/>
+              <path d="M 10 55 A 40 40 0 0 1 68 25" fill="none" stroke="#f59e0b" stroke-width="10" stroke-linecap="round"/>
+              <text x="50" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#1a1a1a">0.87</text>
+            </svg>
+            <div class="v10-gauge-label">SPI</div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- C6: Sign-off/WCC Pipeline -->
+      <div class="v10-widget span-6" data-widget="C6" data-roles="exec,pm,fin,ops,vm">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Sign-off / WCC Pipeline</div>
+            <div class="v10-widget-sub">5-stage workflow funnel</div>
+          </div>
+          <span class="v10-widget-badge proj">C6</span>
+        </div>
+        <div class="v10-funnel">
+          <div class="v10-funnel-row"><div class="v10-funnel-bar" style="width:100%;background:#3b82f6;">Ready · 28</div><div class="v10-funnel-info">avg <strong>1.2d</strong></div></div>
+          <div class="v10-funnel-row"><div class="v10-funnel-bar" style="width:78%;background:#6366f1;">L1 Review · 18</div><div class="v10-funnel-info">avg <strong>2.4d</strong></div></div>
+          <div class="v10-funnel-row"><div class="v10-funnel-bar" style="width:60%;background:#8b5cf6;">L1 Approved · 14</div><div class="v10-funnel-info">avg <strong>1.8d</strong></div></div>
+          <div class="v10-funnel-row"><div class="v10-funnel-bar" style="width:48%;background:#a855f7;">L2 Accepted · 11</div><div class="v10-funnel-info">avg <strong>2.1d</strong></div></div>
+          <div class="v10-funnel-row"><div class="v10-funnel-bar" style="width:34%;background:#10b981;">Billed · 8</div><div class="v10-funnel-info">avg <strong>3.5d</strong></div></div>
+        </div>
+      </div>
+
+
+
+      <!-- ═══════════════ SECTION D — WORKFORCE & OPERATIONS ═══════════════ -->
+
+      <!-- D1: Headcount on Site (Live) -->
+      <div class="v10-widget span-4" data-widget="D1" data-roles="exec,pm,ops">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Headcount on Site (Live)</div>
+            <div class="v10-widget-sub">Total present · 1,247</div>
+          </div>
+          <span class="v10-widget-badge work">D1</span>
+        </div>
+        <div class="v10-pins">
+          <div class="v10-pin"><span class="dot g"></span><span class="name">Site-A Steelplant</span><span class="cnt">312</span></div>
+          <div class="v10-pin"><span class="dot g"></span><span class="name">Site-B Refinery</span><span class="cnt">284</span></div>
+          <div class="v10-pin"><span class="dot y"></span><span class="name">Site-C Highway</span><span class="cnt">198</span></div>
+          <div class="v10-pin"><span class="dot g"></span><span class="name">Site-D Metro</span><span class="cnt">256</span></div>
+          <div class="v10-pin"><span class="dot r"></span><span class="name">Site-E Bridge</span><span class="cnt">94</span></div>
+          <div class="v10-pin"><span class="dot y"></span><span class="name">Site-F Mall</span><span class="cnt">103</span></div>
+        </div>
+      </div>
+
+      <!-- D2: Attendance Trend -->
+      <div class="v10-widget span-4" data-widget="D2" data-roles="exec,pm,ops">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Attendance Trend</div>
+            <div class="v10-widget-sub" id="atSub">May 2026 · daily %</div>
+          </div>
+          <select class="v10-wfilter" id="atFilter" onchange="atRender(this.value)" title="Month">
+            <option value="2026-05">May 2026</option>
+            <option value="2026-04">Apr 2026</option>
+            <option value="2026-03">Mar 2026</option>
+            <option value="2026-02">Feb 2026</option>
+            <option value="2026-01">Jan 2026</option>
+            <option value="2025-12">Dec 2025</option>
+          </select>
+        </div>
+        <div class="v10-canvas-wrap"><canvas id="atChart"></canvas></div>
+        <div class="v10-chart-kpis">
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#3b82f6;margin-right:3px;"></span>Submitted <b id="atKpiSub">96.1%</b></span>
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#10b981;margin-right:3px;"></span>Approved <b id="atKpiApp">94.2%</b></span>
+        </div>
+      </div>
+
+
+      <!-- D4: OT & OOD Hours -->
+      <div class="v10-widget span-4" data-widget="D4" data-roles="exec,pm,fin,ops">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">OT & Out-on-Duty</div>
+            <div class="v10-widget-sub">This week (hrs)</div>
+          </div>
+          <span class="v10-widget-badge work">D4</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-end;">
+          <div style="flex:1;">
+            <div class="v10-big-number" style="font-size:24px;">418</div>
+            <div style="font-size:11px;color:var(--muted);font-weight:600;">OT Hours</div>
+            <span class="v10-delta neg">↑ 12%</span>
+          </div>
+          <div style="flex:1;">
+            <div class="v10-big-number" style="font-size:24px;">62</div>
+            <div style="font-size:11px;color:var(--muted);font-weight:600;">OOD Hours</div>
+            <span class="v10-delta pos">↓ 8%</span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- ═══════════════ SECTION E — ALERTS, RISKS & ACTIONS ═══════════════ -->
+
+      <!-- E2: Approvals Pending -->
+      <div class="v10-widget span-6" data-widget="E2" data-roles="exec,pm,fin,ops,vm">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Approvals Pending</div>
+            <div class="v10-widget-sub">Items awaiting you · across modules</div>
+          </div>
+          <span class="v10-widget-badge alert">E2</span>
+        </div>
+        <div class="v10-appr-list">
+          <div class="v10-appr-row" onclick="showPage('approvals-pending','Approvals Pending')" role="button" tabindex="0">
+            <span class="cnt">4</span>
+            <div class="info"><span class="lbl">Attendance</span><span class="sub">Approvals pending</span></div>
+          </div>
+          <div class="v10-appr-row" onclick="showPage('approvals-pending','Approvals Pending')" role="button" tabindex="0">
+            <span class="cnt">3</span>
+            <div class="info"><span class="lbl">Reimbursements</span><span class="sub">Approvals pending</span></div>
+          </div>
+          <div class="v10-appr-row" onclick="showPage('approvals-pending','Approvals Pending')" role="button" tabindex="0">
+            <span class="cnt">3</span>
+            <div class="info"><span class="lbl">Vendor Approvals</span><span class="sub">L1 stage</span></div>
+          </div>
+          <div class="v10-appr-row" onclick="showPage('approvals-pending','Approvals Pending')" role="button" tabindex="0">
+            <span class="cnt">2</span>
+            <div class="info"><span class="lbl">Work Done</span><span class="sub">Ready to submit</span></div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- E5: Activity Stream -->
+      <div class="v10-widget span-6" data-widget="E5" data-roles="exec,pm,fin,ops,vm">
+        <div class="v10-widget-controls"><div class="v10-widget-ctrl close">✕</div></div>
+        <div class="v10-widget-header">
+          <div>
+            <div class="v10-widget-title">Activity Stream</div>
+            <div class="v10-widget-sub">Last 10 events</div>
+          </div>
+          <span class="v10-widget-badge alert">E5</span>
+        </div>
+        <div class="v10-list">
+          <div class="v10-list-item"><div class="ico green">●</div><div class="body"><div class="ttl">Bill B-0398 approved by L2</div><div class="meta">2 min ago · Andrew</div></div></div>
+          <div class="v10-list-item"><div class="ico blue">●</div><div class="body"><div class="ttl">PO-0142 raised</div><div class="meta">12 min ago · Site-A team</div></div></div>
+          <div class="v10-list-item"><div class="ico amber">●</div><div class="body"><div class="ttl">WCC-118 returned for revision</div><div class="meta">28 min ago · L1 reviewer</div></div></div>
+          <div class="v10-list-item"><div class="ico purple">●</div><div class="body"><div class="ttl">AI agent matched 4 bills</div><div class="meta">1 hr ago · Auto-action</div></div></div>
+          <div class="v10-list-item"><div class="ico red">●</div><div class="body"><div class="ttl">Alert: P-106 budget at 92%</div><div class="meta">2 hr ago · System</div></div></div>
+        </div>
+      </div>
+
+    </div><!-- /v10-dash-grid -->
+
+  </div><!-- /dash-scroll -->
+</div><!-- /page-dashboard -->
+
+<script>
+/* ============================================================
+   V10 DASHBOARD — Role-based widget visibility + customize
+   ============================================================ */
+
+// Default layouts per role (widget IDs in display order)
+const V10_ROLE_LAYOUTS = {
+  // Ordered for clean row tiling: 6-wide widgets pair (6+6=12), 4-wide form rows of 3 (4+4+4=12)
+  exec: ['W1','C6','C1','C2','W2','B6','B2','B3','D1','D2','D4','E2','E5'],
+  pm:   ['W1','C6','C1','C2','W2','D1','D2','D4','E2','E5'],
+  fin:  ['B6','B2','B3','C1','C2','W2','C6','E2','E5'],
+  ops:  ['W1','C6','D1','D2','D4','W2','E2','E5'],
+  vm:   ['C6','E2','B2','B3','W2','E5'],
+};
+
+let v10CurrentRole = 'exec';
+let v10CustomizeMode = false;
+
+function v10SwitchRole(role) {
+  v10CurrentRole = role;
+  document.querySelectorAll('.v10-role-tab').forEach(t => t.classList.toggle('active', t.dataset.role === role));
+  v10RenderForRole(role);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   APPROVALS PENDING — role-based sections with live listings
+   NOTE: tabs are dev/preview only. In production resolve the
+   logged-in user's role once and call apSwitchRole(userRole),
+   and replace AP_DATA with API data. Counts derive from item arrays.
+   ════════════════════════════════════════════════════════════════ */
+const AP_ICONS = {
+  attendance: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>',
+  reimburse:  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>',
+  vendor:     '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+  workdone:   '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>',
+  site:       '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>',
+  wcc:        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+  bill:       '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>',
+  po:         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>',
+  transport:  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1"/>'
+};
+
+const AP_DATA = {
+  pm: {
+    label: 'Project Manager',
+    sections: [
+      { id:'pm-att', icon:'attendance', name:'Attendance Approvals', meta:'Daily attendance awaiting PM sign-off', page:'attendance', pageName:'Attendance', items:[
+        { t:'Rajesh Kumar',   s:'Site-A · 14 May · Present 9:02 AM', r:'May 14', av:'RK', c:1 },
+        { t:'Priya Sharma',   s:'Site-A · 14 May · Present 8:55 AM', r:'May 14', av:'PS', c:2 },
+        { t:'Amit Patel',     s:'Site-B · 14 May · Half-day',         r:'May 14', av:'AP', c:3 },
+        { t:'Sunita Devi',    s:'Site-B · 13 May · Present 9:10 AM',  r:'May 13', av:'SD', c:4 }
+      ]},
+      { id:'pm-reim', icon:'reimburse', name:'Reimbursement Approvals', meta:'Employee expense claims', page:'reimbursements', pageName:'Reimbursements', items:[
+        { t:'Priya Sharma',  s:'Travel · cab to Site-B',     r:'₹3,200',  av:'PS', c:2 },
+        { t:'Vikram Singh',  s:'Material purchase · cement',  r:'₹8,450',  av:'VS', c:3 },
+        { t:'Amit Patel',    s:'Food · site team lunch',      r:'₹1,800',  av:'AP', c:3 }
+      ]},
+      { id:'pm-vl1', icon:'vendor', name:'Vendor Approvals — L1', meta:'First-level vendor / PO review', page:'po-approvals', pageName:'Approval Queue', items:[
+        { t:'PO-2026-0142 · Steelcraft',   s:'Steel supply · Site-A',     r:'₹3.2L', av:'ST', c:3 },
+        { t:'PO-2026-0143 · UnitedPaint',  s:'Paint & finishing',         r:'₹1.8L', av:'UP', c:2 },
+        { t:'PO-2026-0145 · RKL Subcon',   s:'Labour subcontract',        r:'₹4.6L', av:'RS', c:4 }
+      ]},
+      { id:'pm-wd', icon:'workdone', name:'Work Done — Ready to Submit', meta:'DPR entries ready for submission', page:'work-done', pageName:'Work Done', items:[
+        { t:'Site-A · Foundation',  s:'14 May · 22 entries · 86% progress', r:'Submit', av:'SA', c:1 },
+        { t:'Site-B · Plumbing',    s:'13 May · 8 entries · 64% progress',  r:'Submit', av:'SB', c:2 }
+      ]}
+    ]
+  },
+  ops: {
+    label: 'Operations',
+    sections: [
+      { id:'ops-att', icon:'attendance', name:'Attendance Approvals', meta:'Daily attendance awaiting OPS sign-off', page:'attendance', pageName:'Attendance', items:[
+        { t:'Manoj Yadav',   s:'Site-C · 14 May · Present 9:00 AM', r:'May 14', av:'MY', c:1 },
+        { t:'Deepak Verma',  s:'Site-C · 14 May · Present 8:48 AM', r:'May 14', av:'DV', c:2 },
+        { t:'Ravi Teja',     s:'Site-D · 14 May · Late 10:15 AM',   r:'May 14', av:'RT', c:3 },
+        { t:'Kiran Bala',    s:'Site-D · 13 May · Present 9:05 AM',  r:'May 13', av:'KB', c:4 }
+      ]},
+      { id:'ops-reim', icon:'reimburse', name:'Reimbursement Approvals', meta:'Employee expense claims', page:'reimbursements', pageName:'Reimbursements', items:[
+        { t:'Manoj Yadav',   s:'Travel · inter-site transport', r:'₹2,400', av:'MY', c:1 },
+        { t:'Ravi Teja',     s:'Tools · hand drill',            r:'₹5,600', av:'RT', c:3 }
+      ]},
+      { id:'ops-vl2', icon:'vendor', name:'Vendor Approvals — L2', meta:'Second-level vendor / PO review', page:'po-approvals', pageName:'Approval Queue', items:[
+        { t:'PO-2026-0138 · BuildMart',    s:'Aggregate supply',      r:'₹6.1L', av:'BM', c:4 },
+        { t:'PO-2026-0142 · Steelcraft',   s:'Escalated from L1',     r:'₹3.2L', av:'ST', c:3 },
+        { t:'PO-2026-0140 · ProClean',     s:'Site cleaning contract', r:'₹95K', av:'PC', c:2 }
+      ]}
+    ]
+  },
+  hr: {
+    label: 'Human Resources',
+    sections: [
+      { id:'hr-att', icon:'attendance', name:'Attendance Approvals', meta:'Attendance records awaiting HR sign-off', page:'attendance', pageName:'Attendance', items:[
+        { t:'Monthly · Site-A',  s:'April cycle · 42 employees', r:'Apr', av:'SA', c:1 }
+      ]}
+    ]
+  },
+  fin: {
+    label: 'Finance',
+    sections: [
+      { id:'fin-bill', icon:'bill', name:'Vendor Bills', meta:'Bills awaiting finance approval', page:'vendor-bills', pageName:'Vendor Bills', items:[
+        { t:'Bill #B-2026-0398 · Mehta', s:'Against PO-0131 · matched', r:'₹84,500', av:'ME', c:3 },
+        { t:'Bill #B-2026-0401 · Steelcraft', s:'Against PO-0142', r:'₹3.2L', av:'ST', c:2 }
+      ]},
+      { id:'fin-po', icon:'po', name:'PO Created by PM', meta:'Purchase orders pending finance review', page:'po-listing', pageName:'Purchase Orders', items:[
+        { t:'PO-2026-0145 · RKL Subcon', s:'Created by Andrew · Site-A', r:'₹4.6L', av:'RS', c:1 },
+        { t:'PO-2026-0146 · BuildMart',  s:'Created by Andrew · Site-C', r:'₹6.1L', av:'BM', c:2 }
+      ]},
+      { id:'fin-trans', icon:'transport', name:'Transport Bills', meta:'Mileage / transport claims', page:'vendor-mileage', pageName:'Transport Bills', items:[
+        { t:'Mileage · Tata Ace KA-01', s:'Apr cycle · 1,240 km', r:'₹18,600', av:'TA', c:3 }
+      ]},
+      { id:'fin-wcc', icon:'wcc', name:'WCC — Ready to Submit', meta:'Work completion certificates pending', page:'wcc', pageName:'Work Completion Certificate', items:[
+        { t:'WC-115 · Site-B', s:'Plumbing phase · client sign-off', r:'Submit', av:'WC', c:4 }
+      ]}
+    ]
+  }
+};
+
+let apCurrentRole = 'pm';
+
+function apEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function apSwitchRole(role) {
+  apCurrentRole = role;
+  document.querySelectorAll('#page-approvals-pending .ap-role-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.role === role);
+  });
+  apRenderRole(role);
+}
+
+function apRenderRole(role) {
+  const data = AP_DATA[role];
+  if (!data) return;
+  const wrap = document.getElementById('apSections');
+  const title = document.getElementById('apPanelTitle');
+  const sub = document.getElementById('apPanelSub');
+  if (title) title.textContent = data.label + ' — Pending Approvals';
+  if (sub) sub.textContent = 'Each section shows its pending count. Expand to see the list of items awaiting action.';
+
+  let total = 0;
+  let html = '';
+  data.sections.forEach((sec, si) => {
+    const n = sec.items.length;
+    total += n;
+    const open = si === 0 ? ' open' : ''; // first section expanded by default
+    let rows = '';
+    if (n === 0) {
+      rows = '<div class="ap-empty">Nothing pending here. 🎉</div>';
+    } else {
+      sec.items.forEach(it => {
+        rows +=
+          '<div class="ap-row">' +
+            '<div class="ap-row-av alt'+(it.c||1)+'">'+apEsc(it.av)+'</div>' +
+            '<div class="ap-row-main">' +
+              '<div class="ap-row-title">'+apEsc(it.t)+'</div>' +
+              '<div class="ap-row-sub">'+apEsc(it.s)+'</div>' +
+            '</div>' +
+            '<div class="ap-row-amt">'+apEsc(it.r)+'</div>' +
+            '<div class="ap-row-actions">' +
+              '<button class="ap-act-go" title="Go to '+apEsc(sec.pageName)+' to approve" onclick="showPage(\''+sec.page+'\',\''+apEsc(sec.pageName)+'\')">Approve<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7-7 7M21 12H3"/></svg></button>' +
+            '</div>' +
+          '</div>';
+      });
+    }
+    html +=
+      '<div class="ap-sec'+open+'" data-sec="'+sec.id+'">' +
+        '<div class="ap-sec-head" onclick="apToggleSec(this)">' +
+          '<div class="ap-sec-ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24">'+AP_ICONS[sec.icon]+'</svg></div>' +
+          '<div class="ap-sec-titles">' +
+            '<div class="ap-sec-name">'+apEsc(sec.name)+'</div>' +
+            '<div class="ap-sec-meta">'+apEsc(sec.meta)+' · <code>'+apEsc(sec.page)+'</code></div>' +
+          '</div>' +
+          '<span class="ap-sec-count'+(n===0?' zero':'')+'">'+n+'</span>' +
+          '<span class="ap-sec-chev"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg></span>' +
+        '</div>' +
+        '<div class="ap-sec-body">' +
+          rows +
+          '<div class="ap-sec-foot">' +
+            '<span>'+n+' item'+(n===1?'':'s')+' pending</span>' +
+            '<button class="ap-sec-open" onclick="showPage(\''+sec.page+'\',\''+apEsc(sec.pageName)+'\')">Open full page<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7-7 7M21 12H3"/></svg></button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  });
+  if (wrap) wrap.innerHTML = html;
+
+  const tc = document.getElementById('apTotalCount');
+  if (tc) tc.textContent = total + ' pending';
+
+  // keep the active role's tab badge in sync with its real total
+  const activeBadge = document.querySelector('#page-approvals-pending .ap-role-tab.active .badge');
+  if (activeBadge) activeBadge.textContent = total;
+}
+
+function apToggleSec(headEl) {
+  const sec = headEl.closest('.ap-sec');
+  if (sec) sec.classList.toggle('open');
+}
+
+function apAct(btn, kind) {
+  const row = btn.closest('.ap-row');
+  const sec = btn.closest('.ap-sec');
+  if (!row) return;
+  row.style.transition = 'opacity 0.2s';
+  row.style.opacity = '0';
+  setTimeout(() => {
+    row.remove();
+    // update the section count badge + footer after removal
+    if (sec) {
+      const remaining = sec.querySelectorAll('.ap-row').length;
+      const badge = sec.querySelector('.ap-sec-count');
+      const foot = sec.querySelector('.ap-sec-foot span');
+      if (badge) { badge.textContent = remaining; badge.classList.toggle('zero', remaining === 0); }
+      if (foot) foot.textContent = remaining + ' item' + (remaining === 1 ? '' : 's') + ' pending';
+      const body = sec.querySelector('.ap-sec-body');
+      if (remaining === 0 && body && !body.querySelector('.ap-empty')) {
+        const e = document.createElement('div');
+        e.className = 'ap-empty';
+        e.textContent = 'Nothing pending here. 🎉';
+        body.insertBefore(e, body.firstChild);
+      }
+    }
+    // recompute total
+    let total = 0;
+    document.querySelectorAll('#page-approvals-pending .ap-row').forEach(() => total++);
+    const tc = document.getElementById('apTotalCount');
+    if (tc) tc.textContent = total + ' pending';
+    const activeBadge = document.querySelector('#page-approvals-pending .ap-role-tab.active .badge');
+    if (activeBadge) activeBadge.textContent = total;
+  }, 200);
+}
+
+function v10RenderForRole(role) {
+  const allowed = V10_ROLE_LAYOUTS[role] || [];
+  const spanOf = (w) => {
+    const c = w.className.match(/span-(\d+)/);
+    return c ? parseInt(c[1], 10) : 4;
+  };
+  const widgets = document.querySelectorAll('#v10DashGrid .v10-widget');
+  const visible = [];
+  widgets.forEach(w => {
+    const wid = w.dataset.widget;
+    const roleList = (w.dataset.roles || '').split(',');
+    const inRole = roleList.includes(role);
+    const inLayout = allowed.includes(wid);
+    w.classList.remove('v10-fill-row'); // reset prior stretch
+    if (inRole && inLayout) {
+      w.style.display = 'flex';
+      const idx = allowed.indexOf(wid);
+      w.style.order = idx;
+      visible.push({ el: w, idx });
+    } else {
+      w.style.display = 'none';
+    }
+  });
+  // Stretch the final trailing widget to fill its row if that row is short,
+  // so the bottom edge stays symmetrical (handled via class -> media-query safe).
+  visible.sort((a, b) => a.idx - b.idx);
+  let rowFill = 0, lastEl = null, used = 0;
+  visible.forEach(({ el }) => {
+    const s = spanOf(el);
+    if (rowFill + s > 12) { rowFill = 0; }
+    used = rowFill;
+    rowFill += s;
+    lastEl = el;
+    if (rowFill === 12) rowFill = 0;
+  });
+  if (lastEl && rowFill > 0 && rowFill < 12) {
+    lastEl.classList.add('v10-fill-row');
+  }
+  const grid = document.getElementById('v10DashGrid');
+  if (grid) grid.style.display = 'grid';
+}
+
+function v10ToggleCustomize() {
+  v10CustomizeMode = !v10CustomizeMode;
+  const grid = document.getElementById('v10DashGrid');
+  if (!grid) return;
+  grid.querySelectorAll('.v10-widget').forEach(w => {
+    w.classList.toggle('customize-mode', v10CustomizeMode);
+  });
+  const btn = document.getElementById('v10CustomizeBtn');
+  if (btn) {
+    btn.innerHTML = v10CustomizeMode
+      ? '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Done'
+      : '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Customize';
+    btn.classList.toggle('primary', v10CustomizeMode);
+  }
+  if (v10CustomizeMode) {
+    // attach close handlers
+    grid.querySelectorAll('.v10-widget-ctrl.close').forEach(btn => {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        const wdg = btn.closest('.v10-widget');
+        if (wdg) wdg.style.display = 'none';
+      };
+    });
+  }
+}
+
+/* ============================================================
+   V10 DASHBOARD — Chart widgets + filters
+   (Income vs Expense, Portfolio Health, Attendance Trend,
+    Leave Calendar). Mock data; swap with API later.
+   ============================================================ */
+
+// Theme-aware helpers ----------------------------------------
+function v10ThemeColors() {
+  const cs = getComputedStyle(document.documentElement);
+  const dark = document.documentElement.getAttribute('data-dark') === 'true';
+  return {
+    primary: (cs.getPropertyValue('--primary') || '#2D4A35').trim(),
+    text:    dark ? '#e5e7eb' : '#3E3A35',
+    muted:   dark ? '#9ca3af' : '#A09890',
+    grid:    dark ? 'rgba(255,255,255,0.07)' : 'rgba(45,40,32,0.06)',
+    income:  '#10b981',
+    expense: '#f59e0b',
+    submitted:'#3b82f6',
+    approved: '#10b981'
+  };
+}
+function v10MonthLabel(key) {
+  const [y,m] = key.split('-').map(Number);
+  return new Date(y, m-1, 1).toLocaleString('en-US',{month:'long',year:'numeric'});
+}
+function v10MonthShort(key) {
+  const [y,m] = key.split('-').map(Number);
+  return new Date(y, m-1, 1).toLocaleString('en-US',{month:'short'});
+}
+function v10DaysInMonth(key){ const [y,m]=key.split('-').map(Number); return new Date(y,m,0).getDate(); }
+function v10FirstDOW(key){ const [y,m]=key.split('-').map(Number); return new Date(y,m-1,1).getDay(); }
+// Deterministic pseudo-random so values stay stable per key (no flicker on re-render)
+function v10Seed(str){ let h=2166136261; for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);} return (h>>>0)/4294967295; }
+
+// Chart instance registry (so we can destroy before re-render)
+const v10Charts = {};
+function v10Destroy(id){ if(v10Charts[id]){ try{v10Charts[id].destroy();}catch(e){} delete v10Charts[id]; } }
+
+/* ---------- B6: INCOME vs EXPENSE ---------- */
+// Base monthly series (₹ Cr) keyed by YYYY-MM
+const IE_MONTHLY = {
+  '2025-06':[0.42,0.34],'2025-07':[0.46,0.38],'2025-08':[0.44,0.40],
+  '2025-09':[0.51,0.39],'2025-10':[0.48,0.43],'2025-11':[0.53,0.41],
+  '2025-12':[0.42,0.35],'2026-01':[0.50,0.38],'2026-02':[0.45,0.42],
+  '2026-03':[0.55,0.40],'2026-04':[0.48,0.46],'2026-05':[0.58,0.44]
+};
+const IE_ORDER = Object.keys(IE_MONTHLY);
+function ieRender(period){
+  period = period || (document.getElementById('ieFilter')||{}).value || '6m';
+  const c = v10ThemeColors();
+  const sub = document.getElementById('ieSub');
+  let labels=[], inc=[], exp=[], subText='';
+
+  if(period==='thisMonth' || period==='lastMonth'){
+    // Show weekly breakdown within the chosen month
+    const key = period==='thisMonth' ? '2026-05' : '2026-04';
+    const tot = IE_MONTHLY[key];
+    labels=['Wk 1','Wk 2','Wk 3','Wk 4'];
+    const split=[0.22,0.26,0.24,0.28];
+    inc = split.map(s=>+(tot[0]*s).toFixed(2));
+    exp = split.map(s=>+(tot[1]*s).toFixed(2));
+    subText = v10MonthLabel(key)+' · weekly · ₹ Cr';
+  } else {
+    let n = period==='6m'?6 : period==='quarter'?3 : period==='half'?6 : 12;
+    const keys = IE_ORDER.slice(-n);
+    labels = keys.map(v10MonthShort);
+    inc = keys.map(k=>IE_MONTHLY[k][0]);
+    exp = keys.map(k=>IE_MONTHLY[k][1]);
+    subText = (period==='quarter'?'This quarter':period==='half'?'Half year':period==='year'?'This year':'Last 6 months')+' · ₹ Cr';
+  }
+  if(sub) sub.textContent = subText;
+
+  const totIn = inc.reduce((a,b)=>a+b,0), totOut = exp.reduce((a,b)=>a+b,0);
+  const ki=document.getElementById('ieKpiIn'), ko=document.getElementById('ieKpiOut'), kn=document.getElementById('ieKpiNet');
+  if(ki) ki.textContent='₹'+totIn.toFixed(2)+'Cr';
+  if(ko) ko.textContent='₹'+totOut.toFixed(2)+'Cr';
+  if(kn) kn.textContent='₹'+(totIn-totOut).toFixed(2)+'Cr';
+
+  const cv = document.getElementById('ieChart'); if(!cv || typeof Chart==='undefined') return;
+  v10Destroy('ie');
+  v10Charts['ie'] = new Chart(cv, {
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Income',data:inc,backgroundColor:c.income,borderRadius:3,borderSkipped:false,maxBarThickness:16},
+      {label:'Expense',data:exp,backgroundColor:c.expense,borderRadius:3,borderSkipped:false,maxBarThickness:16}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': ₹'+ctx.parsed.y+'Cr'}}},
+      scales:{
+        x:{ticks:{font:{size:9},color:c.muted},grid:{display:false},border:{display:false}},
+        y:{beginAtZero:true,ticks:{font:{size:9},color:c.muted,callback:v=>'₹'+v},grid:{color:c.grid},border:{display:false}}
+      }
+    }
+  });
+}
+
+/* ---------- C1: PORTFOLIO HEALTH ---------- */
+// counts: [onTrack, atRisk, critical, hold] per period
+const PH_DATA = {
+  month:   [7,3,2,1],
+  quarter: [9,5,3,1],
+  half:    [12,6,4,2],
+  year:    [18,9,6,3]
+};
+function phRender(period){
+  period = period || (document.getElementById('phFilter')||{}).value || 'month';
+  const c = v10ThemeColors();
+  const d = PH_DATA[period] || PH_DATA.month;
+  const total = d.reduce((a,b)=>a+b,0);
+  const sub = document.getElementById('phSub');
+  if(sub) sub.textContent = (period==='month'?'This month':period==='quarter'?'This quarter':period==='half'?'Half year':'This year')+' · '+total+' projects';
+
+  // summary chips
+  const sm = document.getElementById('phSummary');
+  if(sm){
+    const labels=['On Track','At Risk','Critical','Hold'], cls=['g','a','r','x'];
+    sm.innerHTML = d.map((n,i)=>`<div class="v10-rag-chip ${cls[i]}"><span class="n">${n}</span>${labels[i]}</div>`).join('');
+  }
+
+  const cv = document.getElementById('phChart'); if(!cv || typeof Chart==='undefined') return;
+  v10Destroy('ph');
+  v10Charts['ph'] = new Chart(cv, {
+    type:'doughnut',
+    data:{labels:['On Track','At Risk','Critical','Hold'],
+      datasets:[{data:d,backgroundColor:['#10b981','#f59e0b','#ef4444','#9ca3af'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.label+': '+ctx.parsed+' ('+Math.round(ctx.parsed/total*100)+'%)'}}}
+    }
+  });
+}
+
+/* ---------- D2: ATTENDANCE TREND (2 lines) ---------- */
+function atRender(monthKey){
+  monthKey = monthKey || (document.getElementById('atFilter')||{}).value || '2026-05';
+  const c = v10ThemeColors();
+  const days = v10DaysInMonth(monthKey);
+  const labels=[], submitted=[], approved=[];
+  for(let d=1; d<=days; d++){
+    const r1 = v10Seed(monthKey+'-s-'+d), r2 = v10Seed(monthKey+'-a-'+d);
+    const sub = +(93 + r1*6).toFixed(1);              // 93–99 %
+    const app = +(Math.max(88, sub - (1 + r2*4))).toFixed(1); // approved <= submitted
+    labels.push(d);
+    submitted.push(sub);
+    approved.push(app);
+  }
+  const avg = arr => (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
+  const ks=document.getElementById('atKpiSub'), ka=document.getElementById('atKpiApp'), sub=document.getElementById('atSub');
+  if(ks) ks.textContent=avg(submitted)+'%';
+  if(ka) ka.textContent=avg(approved)+'%';
+  if(sub) sub.textContent=v10MonthLabel(monthKey)+' · daily %';
+
+  const cv = document.getElementById('atChart'); if(!cv || typeof Chart==='undefined') return;
+  v10Destroy('at');
+  v10Charts['at'] = new Chart(cv, {
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Submitted',data:submitted,borderColor:c.submitted,backgroundColor:'rgba(59,130,246,0.06)',fill:false,tension:0.35,borderWidth:2,pointRadius:0,pointHoverRadius:4},
+      {label:'Approved', data:approved, borderColor:c.approved, backgroundColor:'rgba(16,185,129,0.08)',fill:true, tension:0.35,borderWidth:2,pointRadius:0,pointHoverRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>'Day '+items[0].label,label:ctx=>ctx.dataset.label+': '+ctx.parsed.y+'%'}}},
+      scales:{
+        x:{ticks:{font:{size:8},color:c.muted,maxTicksLimit:8,autoSkip:true},grid:{display:false},border:{display:false}},
+        y:{min:85,max:100,ticks:{font:{size:9},color:c.muted,callback:v=>v+'%',stepSize:5},grid:{color:c.grid},border:{display:false}}
+      }
+    }
+  });
+}
+
+/* ---------- D3: LEAVE CALENDAR (month-wise heatmap) ---------- */
+function lcRender(monthKey){
+  monthKey = monthKey || (document.getElementById('lcFilter')||{}).value || '2026-05';
+  const grid = document.getElementById('v10HeatMap'); if(!grid) return;
+  const days = v10DaysInMonth(monthKey);
+  const firstDOW = v10FirstDOW(monthKey);
+  const intensities = ['', 'h1', 'h2', 'h3', 'h4', 'h5'];
+  let html='', counts=[];
+  // leading blanks so day 1 lands on correct weekday
+  for(let i=0;i<firstDOW;i++) html += `<div class="v10-heat-cell empty"></div>`;
+  for(let d=1; d<=days; d++){
+    const r = v10Seed(monthKey+'-lv-'+d);
+    const cnt = Math.round(r*18);            // 0–18 leaves
+    counts.push(cnt);
+    const lvl = cnt===0?0 : Math.min(5, Math.ceil(cnt/4));
+    html += `<div class="v10-heat-cell ${intensities[lvl]}" title="${v10MonthShort(monthKey)} ${d}: ${cnt} leaves"></div>`;
+  }
+  grid.innerHTML = html;
+  const avg = counts.length ? Math.round(counts.reduce((a,b)=>a+b,0)/counts.length) : 0;
+  const av = document.getElementById('lcAvg'); if(av) av.textContent='Avg '+avg+' leaves/day';
+  const sub = document.getElementById('lcSub'); if(sub) sub.textContent=v10MonthLabel(monthKey)+' · daily count';
+}
+
+// Master render for all dashboard charts
+// Work Done (Planned vs Actual) — period filter
+const W1_DATA = {
+  '30d':       { sub:'Last 30 days · Planned vs Actual',  planned:'0,112 50,100 100,86 150,70 200,54 250,40 300,28 350,20 400,14', actual:'0,112 50,102 100,90 150,76 200,64 250,55 300,49', dot:[300,49], summary:'88% of plan · 1,420 / 1,610 units' },
+  '7d':        { sub:'Last 7 days · Planned vs Actual',    planned:'0,112 65,96 130,80 195,62 260,44 330,26 400,16', actual:'0,112 65,98 130,84 195,68 260,52 330,40 400,30', dot:[400,30], summary:'92% of plan · 358 / 390 units' },
+  'thisMonth': { sub:'This month · Planned vs Actual',     planned:'0,112 60,98 120,82 180,66 240,50 300,34 360,22 400,16', actual:'0,112 60,100 120,86 180,72 240,58 300,46 340,40', dot:[340,40], summary:'81% of plan · 1,180 / 1,455 units' },
+  'lastMonth': { sub:'Last month · Planned vs Actual',     planned:'0,112 50,96 100,80 150,62 200,46 250,32 300,22 350,16 400,12', actual:'0,112 50,98 100,82 150,66 200,50 250,36 300,26 350,18 400,13', dot:[400,13], summary:'97% of plan · 1,560 / 1,610 units' },
+  'quarter':   { sub:'This quarter · Planned vs Actual',   planned:'0,112 66,94 133,74 200,56 266,40 333,26 400,14', actual:'0,112 66,98 133,82 200,66 266,52 333,42 380,36', dot:[380,36], summary:'85% of plan · 3,940 / 4,640 units' },
+  'year':      { sub:'This year · Planned vs Actual',      planned:'0,112 40,98 90,84 140,70 190,56 240,44 290,34 340,24 400,14', actual:'0,112 40,100 90,88 140,76 190,64 240,54 290,46 330,42', dot:[330,42], summary:'78% of plan · 12,300 / 15,800 units' },
+};
+function w1Render(period){
+  const d = W1_DATA[period] || W1_DATA['30d'];
+  const sub = document.getElementById('wdSub');
+  const pl  = document.getElementById('wdPlanned');
+  const ac  = document.getElementById('wdActual');
+  const dot = document.getElementById('wdDot');
+  const sum = document.getElementById('wdSummary');
+  if(sub) sub.textContent = d.sub;
+  if(pl)  pl.setAttribute('points', d.planned);
+  if(ac)  ac.setAttribute('points', d.actual);
+  if(dot){ dot.setAttribute('cx', d.dot[0]); dot.setAttribute('cy', d.dot[1]); }
+  if(sum) sum.textContent = d.summary;
+}
+
+function v10RenderCharts(){
+  ieRender();
+  phRender();
+  atRender();
+  lcRender();
+  w1Render(document.getElementById('wdFilter') ? document.getElementById('wdFilter').value : '30d');
+}
+// Back-compat alias (old code calls v10RenderHeatmap)
+function v10RenderHeatmap(){ lcRender(); }
+
+// Init on dashboard show
+document.addEventListener('DOMContentLoaded', function() {
+  v10RenderForRole('exec');
+  // set today's date
+  const dt = document.getElementById('v10TodayDate');
+  if (dt) {
+    const now = new Date();
+    const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dt.textContent = now.toLocaleDateString('en-US', opts);
+  }
+  // charts after a tick so canvases have layout
+  setTimeout(v10RenderCharts, 60);
+});
+
+// Re-render charts on theme / dark-mode change so colors update
+(function(){
+  const obs = new MutationObserver(()=>{ setTimeout(v10RenderCharts, 50); });
+  obs.observe(document.documentElement, {attributes:true, attributeFilter:['data-theme','data-dark']});
+})();
+
+// Hook into existing showPage if available (re-init when nav-ing back to dashboard)
+if (typeof showPage === 'function') {
+  const _orig = showPage;
+  window.showPage = function(page, title) {
+    _orig(page, title);
+    if (page === 'dashboard' || page === 'home') {
+      setTimeout(() => { v10RenderForRole(v10CurrentRole); v10RenderCharts(); }, 60);
+    }
+  };
+}
+</script>
+
+
 
                 <div id="page-reimbursements" class="page-section">
 
@@ -24427,7 +26196,7 @@
         t1:{name:'Telecom',activities:[{id:'941920099294',name:'ATP'},{id:'642730758921',name:'I&C'},{id:'693917617223',name:'LI-TEL-2004'},{id:'t1a4',name:'DG Commissioning'},{id:'t1a5',name:'Tower Erection'}]},
         t2:{name:'Network',activities:[{id:'915280904378',name:'Network Outage'},{id:'879351724063',name:'DSL Connection Troubleshooting'},{id:'t2a3',name:'Link Restoration'},{id:'t2a4',name:'IP Configuration'}]},
         t3:{name:'Installation',activities:[{id:'218272036123',name:'Fiber Cable Installation'},{id:'537291264679',name:'5G Small Cell Installation'},{id:'387888710486',name:'ONT Installation'},{id:'t3a4',name:'OFC Laying'},{id:'t3a5',name:'RRU Installation'}]},
-        t4:{name:'Maintenance',activities:[{id:'541931458652',name:'Stiches & Screw Fix'},{id:'t4a2',name:'PM Activity'},{id:'t4a3',name:'Battery Replacement'},{id:'t4a4',name:'VSWR Testing'}]},
+        t4:{name:'Maintenance',activities:[{id:'541931458652',name:'Splice & Termination'},{id:'t4a2',name:'PM Activity'},{id:'t4a3',name:'Battery Replacement'},{id:'t4a4',name:'VSWR Testing'}]},
         t5:{name:'Survey',activities:[{id:'t5a1',name:'Site Survey'},{id:'t5a2',name:'Feasibility Check'}]},
         t6:{name:'Civil Work',activities:[{id:'t6a1',name:'Foundation Work'},{id:'t6a2',name:'Fencing'},{id:'t6a3',name:'Earthing'}]},
         t7:{name:'Power',activities:[{id:'t7a1',name:'DG Installation'},{id:'t7a2',name:'Solar Setup'},{id:'t7a3',name:'Rectifier Config'}]}
@@ -25128,7 +26897,7 @@
     <!-- ══ PO LISTING PAGE JAVASCRIPT ══ -->
     <script>
 // ── DATA ─────────────────────────────────────────────
-const RAW = {"code":200,"message":"Purchase Orders fetched successfully.","data":{"page":1,"page_size":10,"total_count":24,"total_records":10,"total_pages":3,"purchase_orders":[{"id":529281481193,"po_number":"PO-200","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2026-02-18","valid_to":"2026-02-18","location":"Dallas","created_at":"2026-02-19T07:09:17.748330","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":20.0}]},{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":20.0},{"id":725017274944,"name":"Site Survey","amount":20.0}]},{"id":387888710486,"name":"ONT Installation","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":20.0},{"id":725017274944,"name":"Site Survey","amount":20.0}]}],"is_milestone_po":0},{"id":145642603224,"po_number":"PO-83962","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:44:46.933440","types":[{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":725017274944,"name":"Site Survey","amount":23490.0}]},{"id":915280904378,"name":"Network Outage","activities":[{"id":725017274944,"name":"Site Survey","amount":3456.0}]}],"is_milestone_po":0},{"id":493713228834,"po_number":"PO-83961","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:39:21.978703","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1023.0},{"id":725017274944,"name":"Site Survey","amount":345.0}]}],"is_milestone_po":0},{"id":258110690997,"po_number":"PO-83959","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:28:18.509398","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1023.0}]}],"is_milestone_po":0},{"id":477326208126,"po_number":"123456","po_date":"2026-02-06","circle":[{"id":865140612260,"name":"Colorado","code":"CO"}],"client":{"id":373672710881,"name":"Verizon"},"project":{"id":315868042937,"name":"vz-two"},"quantity":12,"valid_from":"2026-02-27","valid_to":"2026-02-28","location":"Plano","created_at":"2026-02-19T06:10:23.398760","types":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":633358020751,"name":"LI-TEL-2001","amount":234.0}]},{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":123.0}]}],"is_milestone_po":0},{"id":758721982978,"po_number":"PO-20021","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2025-12-08","valid_to":"2025-12-08","location":"Dallas","created_at":"2026-02-19T05:44:02.155853","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":20.0}]}],"is_milestone_po":0},{"id":656989871698,"po_number":"PO-20020","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2025-12-08","valid_to":"2025-12-08","location":"Dallas","created_at":"2026-02-19T05:39:15.681908","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Stiches & Screw Fix","amount":20.0}]}],"is_milestone_po":0},{"id":835969282796,"po_number":"PO-83958","po_date":"2025-12-09","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":123,"valid_from":"2025-12-09","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-17T07:27:03.325429","types":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":725017274944,"name":"Site Survey","amount":345.0}]}],"is_milestone_po":0},{"id":470794628683,"po_number":"PO-83957","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-17T07:27:01.396435","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1230.0}]}],"is_milestone_po":0},{"id":434536660631,"po_number":"555","po_date":"2026-02-11","circle":[{"id":865140612260,"name":"Colorado","code":"CO"}],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":933997691523,"name":"Carle"},"quantity":50,"valid_from":"2026-02-11","valid_to":"2026-02-11","location":"Dallas","created_at":"2026-02-11T07:20:20.730090","types":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":332716348509,"name":"TEL-1001","amount":800.0},{"id":633358020751,"name":"LI-TEL-2001","amount":200.0}]}],"is_milestone_po":0}]}};
+const RAW = {"code":200,"message":"Purchase Orders fetched successfully.","data":{"page":1,"page_size":10,"total_count":24,"total_records":10,"total_pages":3,"purchase_orders":[{"id":529281481193,"po_number":"PO-200","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2026-02-18","valid_to":"2026-02-18","location":"Dallas","created_at":"2026-02-19T07:09:17.748330","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Splice & Termination","amount":20.0}]},{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":379797372097,"name":"Splice & Termination","amount":20.0},{"id":725017274944,"name":"Site Survey","amount":20.0}]},{"id":387888710486,"name":"ONT Installation","activities":[{"id":379797372097,"name":"Splice & Termination","amount":20.0},{"id":725017274944,"name":"Site Survey","amount":20.0}]}],"is_milestone_po":0},{"id":145642603224,"po_number":"PO-83962","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:44:46.933440","types":[{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":725017274944,"name":"Site Survey","amount":23490.0}]},{"id":915280904378,"name":"Network Outage","activities":[{"id":725017274944,"name":"Site Survey","amount":3456.0}]}],"is_milestone_po":0},{"id":493713228834,"po_number":"PO-83961","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:39:21.978703","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1023.0},{"id":725017274944,"name":"Site Survey","amount":345.0}]}],"is_milestone_po":0},{"id":258110690997,"po_number":"PO-83959","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-19T06:28:18.509398","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1023.0}]}],"is_milestone_po":0},{"id":477326208126,"po_number":"123456","po_date":"2026-02-06","circle":[{"id":865140612260,"name":"Colorado","code":"CO"}],"client":{"id":373672710881,"name":"Verizon"},"project":{"id":315868042937,"name":"vz-two"},"quantity":12,"valid_from":"2026-02-27","valid_to":"2026-02-28","location":"Plano","created_at":"2026-02-19T06:10:23.398760","types":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":633358020751,"name":"LI-TEL-2001","amount":234.0}]},{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":379797372097,"name":"Splice & Termination","amount":123.0}]}],"is_milestone_po":0},{"id":758721982978,"po_number":"PO-20021","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2025-12-08","valid_to":"2025-12-08","location":"Dallas","created_at":"2026-02-19T05:44:02.155853","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Splice & Termination","amount":20.0}]}],"is_milestone_po":0},{"id":656989871698,"po_number":"PO-20020","po_date":"2026-02-18","circle":[],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":206791603630,"name":"Lumen"},"quantity":20,"valid_from":"2025-12-08","valid_to":"2025-12-08","location":"Dallas","created_at":"2026-02-19T05:39:15.681908","types":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"name":"Splice & Termination","amount":20.0}]}],"is_milestone_po":0},{"id":835969282796,"po_number":"PO-83958","po_date":"2025-12-09","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":123,"valid_from":"2025-12-09","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-17T07:27:03.325429","types":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":725017274944,"name":"Site Survey","amount":345.0}]}],"is_milestone_po":0},{"id":470794628683,"po_number":"PO-83957","po_date":"2025-12-08","circle":[],"client":{"id":758318306088,"name":"DemoTel"},"project":{"id":106652450867,"name":"DemoNet Project"},"quantity":112,"valid_from":"2025-12-08","valid_to":"2026-02-17","location":"Suite 700","created_at":"2026-02-17T07:27:01.396435","types":[{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":332716348509,"name":"TEL-1001","amount":1230.0}]}],"is_milestone_po":0},{"id":434536660631,"po_number":"555","po_date":"2026-02-11","circle":[{"id":865140612260,"name":"Colorado","code":"CO"}],"client":{"id":543278181387,"name":"Lumen Inc"},"project":{"id":933997691523,"name":"Carle"},"quantity":50,"valid_from":"2026-02-11","valid_to":"2026-02-11","location":"Dallas","created_at":"2026-02-11T07:20:20.730090","types":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":332716348509,"name":"TEL-1001","amount":800.0},{"id":633358020751,"name":"LI-TEL-2001","amount":200.0}]}],"is_milestone_po":0}]}};
 
 const allPOs = RAW.data.purchase_orders;
 let poFiltered = [...allPOs];
@@ -25483,7 +27252,7 @@ const API_TYPES = [
     'RF Optimization', 'Core Network Support', 'Transmission Work', 'IP Configuration',
 ];
 const API_ACTIVITIES = [
-    'TEL-1001', 'LI-TEL-2001', 'Site Survey', 'Stiches & Screw Fix',
+    'TEL-1001', 'LI-TEL-2001', 'Site Survey', 'Splice & Termination',
     'Fiber Cable Installation', 'Cable Termination', 'Splicing Work',
     'ODF Installation', 'Joint Enclosure', 'Duct Laying', 'Trench Digging',
     'Core Fusion', 'OTDR Testing', 'Power Audit', 'Load Bank Testing',
@@ -26415,7 +28184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- ══ WORK DONE PAGE JAVASCRIPT ══ -->
     <script>
-    const WD_RAW = {"code":200,"message":"Work done records fetched successfully","data":{"page":1,"page_size":20,"total_count":27,"total_records":20,"total_pages":2,"currency":"USD","records":[{"work_site_id":219845296266,"site_uid":435821706181,"site_id":"DAL-NB-005-TX","site_name":"DAL-NB-005-TX","po":{"id":826292769557,"po_number":"900000"},"project":{"id":206647044698,"client":null,"name":"VZ-TX-Site-PLANO"},"circle":{"id":865140612260,"name":"Colorado"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-31","end_date":"2026-04-02","visit_no":2,"work_done":0.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-31","type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":603136436324,"name":"ATP","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1000.0,"status":{"code":0,"label":"NOT_ADDED"}}}]},{"id":642730758921,"name":"I&C","activities":[{"id":466983882326,"work_assignment_id":931005848273,"name":"I&C","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1500.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":324475492436,"name":"Christopher Reed"}}],"unassigned":[]},{"work_site_id":888999173383,"site_uid":610412865781,"site_id":"DEMO-LIVE","site_name":"DEMO-LIVE","po":{"id":758721982978,"po_number":"PO-20021"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-19","end_date":"2026-03-19","visit_no":1,"work_done":0.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-19","type":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"work_assignment_id":745060657049,"name":"Stiches & Screw Fix","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":20.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":755985222811,"name":"pm"}}],"unassigned":[]},{"work_site_id":100402616560,"site_uid":728940062530,"site_id":"LumenF","site_name":"LumenF","po":{"id":735687017306,"po_number":"7800"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":null,"end_date":null,"visit_no":0,"work_done":0.0,"status":{"code":1,"label":"OPEN"},"assignee":[{"id":242674783198,"name":"Ian Jameson","start_date":null,"type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":113656635589,"name":"ATP","status":{"code":1,"label":"OPEN"},"work_done":{"amount":1500.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":334116399338,"name":"ops"}}],"unassigned":[{"type":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":498174649265,"work_assignment_id":null,"name":"ATP","status":null,"work_done":{"amount":900.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":null}]},{"work_site_id":599302936019,"site_uid":962030276020,"site_id":"lumenG","site_name":"lumenG","po":{"id":735687017306,"po_number":"7800"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-05","end_date":"2026-03-05","visit_no":1,"work_done":1500.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":598092769043,"name":"Jessica Martinez","start_date":"2026-03-05","type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":329641666782,"name":"ATP","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1500.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":1500.0,"assigned_by":{"id":294511379152,"name":"AdminUser"}}],"unassigned":[]},{"work_site_id":410524409664,"site_uid":211199579099,"site_id":"LumenD","site_name":"LumenD","po":{"id":656989871698,"po_number":"PO-20020"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":null,"end_date":null,"visit_no":0,"work_done":0.0,"status":{"code":1,"label":"OPEN"},"assignee":[{"id":242674783198,"name":"Ian Jameson","start_date":null,"type":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"work_assignment_id":118414391166,"name":"Stiches & Screw Fix","status":{"code":1,"label":"OPEN"},"work_done":{"amount":20.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":294511379152,"name":"AdminUser"}}],"unassigned":[]},{"work_site_id":360402514172,"site_uid":835047987663,"site_id":"Demo5","site_name":"Demo","po":{"id":145642603224,"po_number":"PO-83962"},"project":{"id":106652450867,"client":null,"name":"DemoNet Project"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-01","end_date":"2026-03-01","visit_no":1,"work_done":23490.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-01","type":[{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":725017274944,"work_assignment_id":916392368876,"name":"Site Survey","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":23490.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":23490.0,"assigned_by":{"id":324475492436,"name":"Christopher Reed"}}],"unassigned":[]},{"work_site_id":657806635474,"site_uid":432661297356,"site_id":"VZ7G","site_name":"vzDallas","po":{"id":645388359732,"po_number":"VZ-4G"},"project":{"id":914400254674,"client":null,"name":"vz4g"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-02-19","end_date":"2026-03-05","visit_no":2,"work_done":2000.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-02-19","type":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":379797372097,"work_assignment_id":408127300022,"name":"Stiches & Screw Fix","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":2,"label":"SUBMITTED"}}},{"id":633358020751,"work_assignment_id":528359265985,"name":"LI-TEL-2001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":400.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":2000.0,"assigned_by":{"id":755985222811,"name":"pm"}}],"unassigned":[]},{"work_site_id":162437154327,"site_uid":136894681062,"site_id":"LumenA","site_name":"LumenA","po":{"id":238747687648,"po_number":"0002"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-01-29","end_date":"2026-02-17","visit_no":2,"work_done":2280.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-01-29","type":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":590902878729,"work_assignment_id":106940352669,"name":"TASK-TEL-1001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":2,"label":"SUBMITTED"}}},{"id":633358020751,"work_assignment_id":637284960232,"name":"LI-TEL-2001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1110.0,"status":{"code":2,"label":"SUBMITTED"}}}]},{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":467392374722,"work_assignment_id":452858038699,"name":"Fiber Cable Installation","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":0,"label":"NOT_ADDED"}}},{"id":332716348509,"work_assignment_id":551003175379,"name":"TEL-1001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":500.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":2280.0,"assigned_by":{"id":678635675106,"name":"Kevin Brooks"}}],"unassigned":[]}]}};
+    const WD_RAW = {"code":200,"message":"Work done records fetched successfully","data":{"page":1,"page_size":20,"total_count":27,"total_records":20,"total_pages":2,"currency":"USD","records":[{"work_site_id":219845296266,"site_uid":435821706181,"site_id":"DAL-NB-005-TX","site_name":"DAL-NB-005-TX","po":{"id":826292769557,"po_number":"900000"},"project":{"id":206647044698,"client":null,"name":"VZ-TX-Site-PLANO"},"circle":{"id":865140612260,"name":"Colorado"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-31","end_date":"2026-04-02","visit_no":2,"work_done":0.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-31","type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":603136436324,"name":"ATP","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1000.0,"status":{"code":0,"label":"NOT_ADDED"}}}]},{"id":642730758921,"name":"I&C","activities":[{"id":466983882326,"work_assignment_id":931005848273,"name":"I&C","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1500.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":324475492436,"name":"Christopher Reed"}}],"unassigned":[]},{"work_site_id":888999173383,"site_uid":610412865781,"site_id":"DEMO-LIVE","site_name":"DEMO-LIVE","po":{"id":758721982978,"po_number":"PO-20021"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-19","end_date":"2026-03-19","visit_no":1,"work_done":0.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-19","type":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"work_assignment_id":745060657049,"name":"Splice & Termination","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":20.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":755985222811,"name":"pm"}}],"unassigned":[]},{"work_site_id":100402616560,"site_uid":728940062530,"site_id":"LumenF","site_name":"LumenF","po":{"id":735687017306,"po_number":"7800"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":null,"end_date":null,"visit_no":0,"work_done":0.0,"status":{"code":1,"label":"OPEN"},"assignee":[{"id":242674783198,"name":"Ian Jameson","start_date":null,"type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":113656635589,"name":"ATP","status":{"code":1,"label":"OPEN"},"work_done":{"amount":1500.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":334116399338,"name":"ops"}}],"unassigned":[{"type":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":498174649265,"work_assignment_id":null,"name":"ATP","status":null,"work_done":{"amount":900.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":null}]},{"work_site_id":599302936019,"site_uid":962030276020,"site_id":"lumenG","site_name":"lumenG","po":{"id":735687017306,"po_number":"7800"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-05","end_date":"2026-03-05","visit_no":1,"work_done":1500.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":598092769043,"name":"Jessica Martinez","start_date":"2026-03-05","type":[{"id":941920099294,"name":"ATP","activities":[{"id":498174649265,"work_assignment_id":329641666782,"name":"ATP","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1500.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":1500.0,"assigned_by":{"id":294511379152,"name":"AdminUser"}}],"unassigned":[]},{"work_site_id":410524409664,"site_uid":211199579099,"site_id":"LumenD","site_name":"LumenD","po":{"id":656989871698,"po_number":"PO-20020"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":null,"end_date":null,"visit_no":0,"work_done":0.0,"status":{"code":1,"label":"OPEN"},"assignee":[{"id":242674783198,"name":"Ian Jameson","start_date":null,"type":[{"id":915280904378,"name":"Network Outage","activities":[{"id":379797372097,"work_assignment_id":118414391166,"name":"Splice & Termination","status":{"code":1,"label":"OPEN"},"work_done":{"amount":20.0,"status":{"code":0,"label":"NOT_ADDED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":0.0,"assigned_by":{"id":294511379152,"name":"AdminUser"}}],"unassigned":[]},{"work_site_id":360402514172,"site_uid":835047987663,"site_id":"Demo5","site_name":"Demo","po":{"id":145642603224,"po_number":"PO-83962"},"project":{"id":106652450867,"client":null,"name":"DemoNet Project"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-03-01","end_date":"2026-03-01","visit_no":1,"work_done":23490.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-03-01","type":[{"id":537291264679,"name":"5G Small Cell Installation","activities":[{"id":725017274944,"work_assignment_id":916392368876,"name":"Site Survey","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":23490.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":23490.0,"assigned_by":{"id":324475492436,"name":"Christopher Reed"}}],"unassigned":[]},{"work_site_id":657806635474,"site_uid":432661297356,"site_id":"VZ7G","site_name":"vzDallas","po":{"id":645388359732,"po_number":"VZ-4G"},"project":{"id":914400254674,"client":null,"name":"vz4g"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-02-19","end_date":"2026-03-05","visit_no":2,"work_done":2000.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-02-19","type":[{"id":879351724063,"name":"DSL Connection Troubleshooting","activities":[{"id":379797372097,"work_assignment_id":408127300022,"name":"Splice & Termination","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":2,"label":"SUBMITTED"}}},{"id":633358020751,"work_assignment_id":528359265985,"name":"LI-TEL-2001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":400.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":2000.0,"assigned_by":{"id":755985222811,"name":"pm"}}],"unassigned":[]},{"work_site_id":162437154327,"site_uid":136894681062,"site_id":"LumenA","site_name":"LumenA","po":{"id":238747687648,"po_number":"0002"},"project":{"id":206791603630,"client":null,"name":"Lumen"},"circle":{"id":602883010892,"name":"Dallas"},"pm":{"id":755985222811,"name":"pm"},"start_date":"2026-01-29","end_date":"2026-02-17","visit_no":2,"work_done":2280.0,"status":{"code":5,"label":"COMPLETED"},"assignee":[{"id":324475492436,"name":"Christopher Reed","start_date":"2026-01-29","type":[{"id":387888710486,"name":"ONT Installation","activities":[{"id":590902878729,"work_assignment_id":106940352669,"name":"TASK-TEL-1001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":2,"label":"SUBMITTED"}}},{"id":633358020751,"work_assignment_id":637284960232,"name":"LI-TEL-2001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":1110.0,"status":{"code":2,"label":"SUBMITTED"}}}]},{"id":218272036123,"name":"Fiber Cable Installation","activities":[{"id":467392374722,"work_assignment_id":452858038699,"name":"Fiber Cable Installation","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":200.0,"status":{"code":0,"label":"NOT_ADDED"}}},{"id":332716348509,"work_assignment_id":551003175379,"name":"TEL-1001","status":{"code":5,"label":"COMPLETED"},"work_done":{"amount":500.0,"status":{"code":2,"label":"SUBMITTED"}}}]}],"vendor":null,"claims":{"id":null,"claimed_amount":0.0,"disbursed_amount":0.0},"total_salary_cost":0.0,"misc":0.0,"total_cost":0.0,"net_value":2280.0,"assigned_by":{"id":678635675106,"name":"Kevin Brooks"}}],"unassigned":[]}]}};
 
     const wdRecords = WD_RAW.data.records;
     const wdExpandedRows = new Set();
@@ -27827,7 +29596,7 @@ document.addEventListener('DOMContentLoaded', () => {
         t1:{name:'Telecom',activities:[{id:'941920099294',name:'ATP'},{id:'642730758921',name:'I&C'},{id:'693917617223',name:'LI-TEL-2004'},{id:'t1a4',name:'DG Commissioning'},{id:'t1a5',name:'Tower Erection'}]},
         t2:{name:'Network',activities:[{id:'915280904378',name:'Network Outage'},{id:'879351724063',name:'DSL Connection Troubleshooting'},{id:'t2a3',name:'Link Restoration'},{id:'t2a4',name:'IP Configuration'}]},
         t3:{name:'Installation',activities:[{id:'218272036123',name:'Fiber Cable Installation'},{id:'537291264679',name:'5G Small Cell Installation'},{id:'387888710486',name:'ONT Installation'},{id:'t3a4',name:'OFC Laying'},{id:'t3a5',name:'RRU Installation'},{id:'t3a6',name:'BBU Setup'}]},
-        t4:{name:'Maintenance',activities:[{id:'541931458652',name:'Stiches & Screw Fix'},{id:'t4a2',name:'PM Activity'},{id:'t4a3',name:'Battery Replacement'},{id:'t4a4',name:'VSWR Testing'},{id:'t4a5',name:'Preventive Maintenance'},{id:'t4a6',name:'Corrective Maintenance'}]},
+        t4:{name:'Maintenance',activities:[{id:'541931458652',name:'Splice & Termination'},{id:'t4a2',name:'PM Activity'},{id:'t4a3',name:'Battery Replacement'},{id:'t4a4',name:'VSWR Testing'},{id:'t4a5',name:'Preventive Maintenance'},{id:'t4a6',name:'Corrective Maintenance'}]},
         t5:{name:'Survey',activities:[{id:'t5a1',name:'Site Survey'},{id:'t5a2',name:'Feasibility Check'}]},
         t6:{name:'Civil Work',activities:[{id:'t6a1',name:'Foundation Work'},{id:'t6a2',name:'Fencing'},{id:'t6a3',name:'Earthing'}]},
         t7:{name:'Power',activities:[{id:'t7a1',name:'DG Installation'},{id:'t7a2',name:'Solar Setup'},{id:'t7a3',name:'Rectifier Config'},{id:'t7a4',name:'Battery Bank Setup'}]}
@@ -30988,7 +32757,7 @@ const WCC_DATA = [
   {id:3,date:'2026-03-10',site_id:'Test5',site_name:'Test',sign_dt:'2026-03-10',work_done:23490,bundle_id:'WB-2026-001',submit_dt:'2026-03-12',receive_dt:'2026-03-15',status:'ACCEPTED',wcc_no:'WCC-2026-0042',rec_amt:23490,remarks:'All docs verified',invoice_no:'INV-2026-0088',
    assignees:[{name:'Christopher Reed',av:'JK',start:'2026-03-01',types:[{name:'5G Small Cell Installation',acts:[{name:'Site Survey',amt:23490,status:'COMPLETED',wd:'SUBMITTED'}]}]}]},
   {id:4,date:'2026-03-20',site_id:'VZ7G',site_name:'vzDallas',sign_dt:'2026-03-20',work_done:2000,bundle_id:'WB-2026-002',submit_dt:'2026-03-22',receive_dt:null,status:'SUBMITTED',wcc_no:'WCC-2026-0043',rec_amt:null,remarks:'Awaiting client review',invoice_no:null,
-   assignees:[{name:'Christopher Reed',av:'JK',start:'2026-02-19',types:[{name:'DSL Troubleshooting',acts:[{name:'Stiches & Screw Fix',amt:200,status:'COMPLETED',wd:'SUBMITTED'},{name:'LI-TEL-2001',amt:400,status:'COMPLETED',wd:'SUBMITTED'}]}]}]},
+   assignees:[{name:'Christopher Reed',av:'JK',start:'2026-02-19',types:[{name:'DSL Troubleshooting',acts:[{name:'Splice & Termination',amt:200,status:'COMPLETED',wd:'SUBMITTED'},{name:'LI-TEL-2001',amt:400,status:'COMPLETED',wd:'SUBMITTED'}]}]}]},
   {id:5,date:'2026-02-20',site_id:'lumenG-v1',site_name:'lumenG Visit 1',sign_dt:'2026-02-20',work_done:1500,bundle_id:'WB-2026-003',submit_dt:'2026-02-22',receive_dt:'2026-02-25',status:'REJECTED',wcc_no:'WCC-2026-0039',rec_amt:null,remarks:'Missing sign-off document',invoice_no:null,
    assignees:[{name:'Jessica Martinez',av:'TG',start:'2026-03-05',types:[{name:'ATP',acts:[{name:'ATP',amt:1500,status:'COMPLETED',wd:'SUBMITTED'}]}]}]},
 ];
@@ -32493,11 +34262,11 @@ document.addEventListener('DOMContentLoaded',function(){wccRender();});
                 "circle": {"id": 602883010892, "name": "Dallas"},
                 "site": {"id": 200917219442, "site_id": "Demo3", "name": "TestC", "status": {"code": 9, "label": "CANCELLED"}},
                 "work_type": [
-                    {"id": 541931458652, "name": "Simar Ka Daant Nikalo", "activities": [{"id": 633358020751, "name": "LI-TEL-2001"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
+                    {"id": 541931458652, "name": "Equipment Maintenance", "activities": [{"id": 633358020751, "name": "LI-TEL-2001"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
                     {"id": 218272036123, "name": "Fiber Cable Installation", "activities": [{"id": 467392374722, "name": "Fiber Cable Installation"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
-                    {"id": 879351724063, "name": "DSL Connection Troubleshooting", "activities": [{"id": 332716348509, "name": "TEL-1001"}, {"id": 379797372097, "name": "Stiches & Screw Fix"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
+                    {"id": 879351724063, "name": "DSL Connection Troubleshooting", "activities": [{"id": 332716348509, "name": "TEL-1001"}, {"id": 379797372097, "name": "Splice & Termination"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
                     {"id": 537291264679, "name": "5G Small Cell Installation", "activities": [{"id": 467392374722, "name": "Fiber Cable Installation"}, {"id": 633358020751, "name": "LI-TEL-2001"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
-                    {"id": 915280904378, "name": "Network Outage", "activities": [{"id": 379797372097, "name": "Stiches & Screw Fix"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
+                    {"id": 915280904378, "name": "Network Outage", "activities": [{"id": 379797372097, "name": "Splice & Termination"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
                     {"id": 693917617223, "name": "LI-TEL-2004", "activities": [{"id": 467392374722, "name": "Fiber Cable Installation"}, {"id": 633358020751, "name": "LI-TEL-2001"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}},
                     {"id": 387888710486, "name": "ONT Installation", "activities": [{"id": 725017274944, "name": "Site Survey"}], "status": null, "employee_remarks": null, "work_started_at": null, "work_ended_at": null, "pm": {"status": 0, "remarks": null, "approved_at": null}, "ops": {"status": 0, "remarks": null, "approved_at": null}, "admin": {"status": 0, "remarks": null, "approved_at": null}}
                 ],
